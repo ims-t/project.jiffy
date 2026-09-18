@@ -8,6 +8,7 @@
 |Hans Dampf|Zeit erfassen
 |   |History anschauen
 |   |Einträge bearbeiten / löschen
+|   |Accountdaten downloaden / löschen
 
 ### IMS-T Lernende
 
@@ -16,6 +17,7 @@
 |Lukas Muster|Zeit erfassen|
 |   |History anschauen
 |   |Einträge bearbeiten / löschen
+|   |Accountdaten downloaden / löschen
 
 ### IMS-T Ausbildner
 
