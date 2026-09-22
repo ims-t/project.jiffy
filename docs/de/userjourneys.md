@@ -163,3 +163,26 @@ Urs (Ausbildner) will einen User löschen.
 8. Urs klickt unten links auf den roten "Delete"-Button
 9. Urs klickt bei der Bestätigungsfrage auf den roten "Confirm"-Button. <= funktioniert noch nicht
 10. Urs wird wieder auf die "User"-Page weitergeleitet und der gelöschte User ist nicht mehr zu sehen bzw. ist jetzt gelöscht.
+
+## User Journey 11
+Lukas (Lernender) möchte einen Zeiteintrag bearbeiten, da er vergessen hat, die Zeit zu starten.
+1. Lukas öffnet die App, indem er auf das Icon in seiner Taskleiste klickt.
+2. Lukas meldet sich mit seinen Zugangsdaten an.
+3. Lukas klickt auf den Start Button und startet die Zeiterfassung.
+4. Nachdem Lukas mit der Arbeit fertig ist, klickt er auf den Stopp Button.
+5. Lukas wechselt auf die History Seite.
+6. Lukas wählt den entsprechenden Zeiteintrag aus und klickt darauf.
+7. Lukas bearbeitet die Zeit gemäss den Richtlinien und klickt anschliessend auf Save.
+8. Lukas schliesst die App.
+
+## User Journey 12
+Lukas (Lernender) möchte einen Zeiteintrag löschen.
+1. Lukas öffnet die App, indem er auf das Icon in seiner Taskleiste klickt.
+2. Lukas meldet sich mit seinen Zugangsdaten an.
+3. Lukas klickt auf den Start Button und startet die Zeiterfassung.
+4. Nachdem Lukas mit der Arbeit fertig ist, klickt er auf den Stopp Button.
+5. Lukas wechselt auf die History Seite.
+6. Er wählt den entsprechenden Zeiteintrag aus und klickt darauf.
+7. Lukas klickt dann auf den Delete Button.
+8. Lukas Bestätigt dann das er es löschen will indem er auf den Confirm Button klickt.
+9. Lukas schliesst die App.
