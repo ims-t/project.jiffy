@@ -186,3 +186,23 @@ Lukas (Lernender) möchte einen Zeiteintrag löschen.
 7. Lukas klickt dann auf den Delete Button.
 8. Lukas Bestätigt dann das er es löschen will indem er auf den Confirm Button klickt.
 9. Lukas schliesst die App.
+
+## User Journey 13
+Urs (Ausbildner) will die Zeiten von Lukas anschauen.
+1. Urs öffnet die App mit einem Klick auf das Icon in seiner Taskbar.
+2. Urs meldet sich mit seinen Credentials an.
+3. Urs klickt in der Sidebar auf die Seite wo er die Zeiten seiner Schüler sieht.
+4. Urs sieht zuerst alle Klassen und wählt dort die Klasse von Lukas aus.
+5. Urs sucht Lukas in der Schülerlist und wählt ihn aus.
+6. Urs sieht dann alle Zeiteinträge von Lukas und die Über-/ Unterzeit von ihm.
+
+## User Journey 14
+Urs (Ausbildner) will die Zeiteinträge von Lukas auf Zeitbetrug überprüfen.
+1. Urs öffnet die App mit einem Klick auf das Icon in seiner Taskbar.
+2. Urs meldet sich mit seinen Credentials an.
+3. Urs klickt in der Sidebar auf die Seite wo er die Zeiten seiner Schüler sieht.
+4. Urs sieht zuerst alle Klassen und wählt dort die Klasse von Lukas aus.
+5. Urs sucht Lukas in der Schülerliste und wählt ihn aus.
+6. Urs sieht nun alle Zeiteinträge von Lukas.
+7. Urs sieht, dass einige Einträge als bearbeitet markiert sind, und klickt auf einen davon.
+8. Urs liest sich die Begründung für die Änderung des Zeiteintrags durch.
