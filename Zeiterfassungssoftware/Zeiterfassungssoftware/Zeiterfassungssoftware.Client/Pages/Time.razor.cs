@@ -59,9 +59,6 @@ namespace Zeiterfassungssoftware.Client.Pages
 
 			if (!Started)
             {
-                PostTitle();
-                PostDescription();
-
                 Timer = new Timer(UpdateTimer, null, 0, 1000);
 
 				var Temp = new TimeEntryDto()
