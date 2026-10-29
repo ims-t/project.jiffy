@@ -160,5 +160,15 @@ namespace Zeiterfassungssoftware.Client.Pages
 		{
 			Timer?.Dispose();
 		}
+
+		public async Task UpdateActivityTitle(string value)
+		{
+
+		}
+
+		public async Task UpdateActivityDescription(string value)
+		{
+
+		}
 	}
 }
