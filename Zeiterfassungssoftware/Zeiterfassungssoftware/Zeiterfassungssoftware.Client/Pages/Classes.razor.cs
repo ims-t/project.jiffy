@@ -90,6 +90,8 @@ namespace Zeiterfassungssoftware.Client.Pages
             {
                 Value = Guid.Empty.ToString()
             });
+
+            DisplayDeleteModal = false;
         }
 
         void IDisposable.Dispose()
