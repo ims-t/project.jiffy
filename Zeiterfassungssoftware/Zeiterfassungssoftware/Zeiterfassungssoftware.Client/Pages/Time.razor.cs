@@ -50,6 +50,12 @@ namespace Zeiterfassungssoftware.Client.Pages
 		{
             CurrentEntry = TimeEntrySource.GetEntries().FirstOrDefault(e => e.End is null);
 
+			if (CurrentEntry is not null)
+			{
+				ActivityTitle = CurrentEntry.Title;
+				ActivityDescription = CurrentEntry.Description;
+			}
+
             if (!Started)
 				Timer?.Dispose();
 		}
@@ -159,6 +165,32 @@ namespace Zeiterfassungssoftware.Client.Pages
 		void IDisposable.Dispose()
 		{
 			Timer?.Dispose();
+		}
+
+		public async Task UpdateActivityTitle(string value)
+		{
+			ActivityTitle = value;
+			await SaveDraft();
+		}
+
+		public async Task UpdateActivityDescription(string value)
+		{
+			ActivityDescription = value;
+			await SaveDraft();
+		}
+
+		private async Task SaveDraft()
+		{
+            if (CurrentEntry is null)
+                return;
+
+            if (string.IsNullOrWhiteSpace(Title) || string.IsNullOrWhiteSpace(Description))
+                return;
+
+            CurrentEntry.Title = Title;
+			CurrentEntry.Description = Description;
+
+			await TimeEntrySource.UpdateEntry(CurrentEntry.Id, CurrentEntry);
 		}
 	}
 }
