@@ -50,6 +50,12 @@ namespace Zeiterfassungssoftware.Client.Pages
 		{
             CurrentEntry = TimeEntrySource.GetEntries().FirstOrDefault(e => e.End is null);
 
+			if (CurrentEntry is not null)
+			{
+				ActivityTitle = CurrentEntry.Title;
+				ActivityDescription = CurrentEntry.Description;
+			}
+
             if (!Started)
 				Timer?.Dispose();
 		}
