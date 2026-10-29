@@ -163,12 +163,28 @@ namespace Zeiterfassungssoftware.Client.Pages
 
 		public async Task UpdateActivityTitle(string value)
 		{
-
+			ActivityTitle = value;
+			await SaveDraft();
 		}
 
 		public async Task UpdateActivityDescription(string value)
 		{
+			ActivityDescription = value;
+			await SaveDraft();
+		}
 
+		private async Task SaveDraft()
+		{
+            if (CurrentEntry is null)
+                return;
+
+            if (string.IsNullOrWhiteSpace(Title) || string.IsNullOrWhiteSpace(Description))
+                return;
+
+            CurrentEntry.Title = Title;
+			CurrentEntry.Description = Description;
+
+			await TimeEntrySource.UpdateEntry(CurrentEntry.Id, CurrentEntry);
 		}
 	}
 }
