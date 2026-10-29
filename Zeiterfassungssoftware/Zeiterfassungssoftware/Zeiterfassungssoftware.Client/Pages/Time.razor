@@ -41,7 +41,7 @@
 						}
 					</select>
 				</div>
-				<TextField Style="height: 45px;" Class="@(ActivityTitleSelect.Equals(NEW_ACTIVITY_TITLE) ? "textfield activity-textfield" : "invisible")" PlaceHolder="Activity Title..." @bind-Value="@ActivityTitle" Multiline="false" />
+				<TextField Style="height: 45px;" Class="@(ActivityTitleSelect.Equals(NEW_ACTIVITY_TITLE) ? "textfield activity-textfield" : "invisible")" PlaceHolder="Activity Title..." Value="@ActivityTitle" ValueChanged="UpdateActivityTitle" Multiline="false" />
 
 				<div class="centered-div-flex">
 					<select @bind="ActivityDescriptionSelect" class="activity-select @(ActivityDescriptionSelect.Equals(NEW_ACTIVITY_DESCRIPTION) ? "" : "bottomrounded")">
@@ -63,7 +63,7 @@
 						}
 					</select>
 				</div>
-				<TextField Style="height: 90px;" Class="@(ActivityDescriptionSelect.Equals(NEW_ACTIVITY_DESCRIPTION) ? "textfield activity-textfield bottomrounded" : "invisible")" PlaceHolder="Activity Description..." @bind-Value="@ActivityDescription" Multiline="true" />
+				<TextField Style="height: 90px;" Class="@(ActivityDescriptionSelect.Equals(NEW_ACTIVITY_DESCRIPTION) ? "textfield activity-textfield bottomrounded" : "invisible")" PlaceHolder="Activity Description..." Value="@ActivityDescription" ValueChanged="UpdateActivityDescription" Multiline="true" />
 			}
 		</div>
 	}
