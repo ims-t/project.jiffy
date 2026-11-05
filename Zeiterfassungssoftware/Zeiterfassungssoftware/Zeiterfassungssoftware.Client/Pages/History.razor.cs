@@ -35,7 +35,9 @@ namespace Zeiterfassungssoftware.Client.Pages
                 .Take(LastCount);
 
         private string OvertimeDisplay =>
-            $"{(int)Overtime.TotalHours}h {Math.Abs(Overtime.Minutes)}min";
+          Math.Abs(Overtime.TotalHours) < 1
+            ? $"{Math.Floor(Overtime.TotalMinutes)}min"
+            : $"{(int)Overtime.TotalHours}h {Math.Abs(Overtime.Minutes)}min";
 
         protected override void OnInitialized()
         {
