@@ -191,7 +191,7 @@ namespace Zeiterfassungssoftware.Services
             if (string.IsNullOrEmpty(UserId))
                 return Unauthorized();
 
-            Entry? Entry = await _context.Entries.FirstOrDefaultAsync(e => (e.Id == id) && ((e.UserId == UserId) || (User.IsInRole("Administrator"))));
+            Entry? Entry = await _context.Entries.Include(e => e.ShouldTime).FirstOrDefaultAsync(e => (e.Id == id) && ((e.UserId == UserId) || (User.IsInRole("Administrator"))));
 
             if (Entry is null)
                 return NotFound();
