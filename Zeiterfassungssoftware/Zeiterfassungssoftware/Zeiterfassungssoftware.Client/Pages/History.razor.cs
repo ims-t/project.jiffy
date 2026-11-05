@@ -24,7 +24,6 @@ namespace Zeiterfassungssoftware.Client.Pages
             new TimeFilter("Stop Time"),
             new StringFilter("Activity"),
             new StringFilter("Description"),
-            new StringFilter("Username"),
         ];
 
         private IFilter SelectedFilter => Filters.FirstOrDefault(e => e.PopUp);
@@ -35,9 +34,7 @@ namespace Zeiterfassungssoftware.Client.Pages
                 .Take(LastCount);
 
         private string OvertimeDisplay =>
-            Math.Abs(Overtime.TotalHours) < 1
-                ? $"{Math.Floor(Overtime.TotalMinutes)}min"
-                : $"{Math.Floor(Overtime.TotalHours)}h";
+            $"{(int)Overtime.TotalHours}h {Math.Abs(Overtime.Minutes)}min";
 
         protected override void OnInitialized()
         {
@@ -81,12 +78,11 @@ namespace Zeiterfassungssoftware.Client.Pages
 
         public bool DoFiltersApply(TimeEntryDto Entry)
 		{
-			return Filters[0].MatchesCriteria(Entry.Start) && 
+            return Filters[0].MatchesCriteria(Entry.Start) &&
                    Filters[1].MatchesCriteria(Entry.Start) &&
-				   Filters[2].MatchesCriteria(Entry.End ?? DateTime.Now) && 
+                   Filters[2].MatchesCriteria(Entry.End ?? DateTime.Now) &&
                    Filters[3].MatchesCriteria(Entry.Title) &&
-				   Filters[4].MatchesCriteria(Entry.Description) && 
-                   Filters[5].MatchesCriteria(Entry.Username);
+                   Filters[4].MatchesCriteria(Entry.Description);
 		}
 
         void IDisposable.Dispose()
