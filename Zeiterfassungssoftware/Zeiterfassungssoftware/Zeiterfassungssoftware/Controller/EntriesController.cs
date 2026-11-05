@@ -75,6 +75,7 @@ namespace Zeiterfassungssoftware.Services
                     .OrderByDescending(e => e.Start)
                     .Skip(start)
                     .Take(limit)
+                    .Include(e => e.ShouldTime)
                     .Select(e => EntryMapper.ToDTO(e))
                     .ToListAsync();
 
