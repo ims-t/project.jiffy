@@ -23,21 +23,21 @@ namespace Zeiterfassungssoftware.SharedData.Times
         
         public string GetTimeString()
         {
-            var Hours = Math.Floor(Time.TotalHours);
-            var Minutes = Math.Floor((Time.TotalHours - Hours) * 60);
-            string TimeString = "";
+            return FormatTime(Time);
+        }
 
+        public static string FormatTime(TimeSpan time)
+        {
+            var hours = (int)time.TotalHours;
+            var minutes = Math.Abs(time.Minutes);
 
-            if (Hours > 0)
-                TimeString += $"{Hours}h ";
+            if (hours != 0)
+                return $"{hours} h {minutes} min";
 
-            if (Minutes > 0)
-                TimeString += $"{Minutes}min ";
+            if (minutes != 0)
+                return $"{(int)time.TotalMinutes} min";
 
-            if (Hours == 0 && Minutes == 0)
-                TimeString += $"{Time.Seconds}s";
-
-            return TimeString;
+            return $"{time.Seconds} s";
         }
 
         public string GetStartString()
