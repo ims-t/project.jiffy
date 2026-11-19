@@ -14,6 +14,9 @@ namespace Zeiterfassungssoftware.Client.Components
 
         private async Task OnConfirmClicked()
         {
+            if (!CanSave)
+                return;
+
             await OnConfirm.InvokeAsync(Justification);
         }
 
@@ -21,5 +24,7 @@ namespace Zeiterfassungssoftware.Client.Components
         {
             await OnCancel.InvokeAsync();
         }
+
+        private bool CanSave => !string.IsNullOrWhiteSpace(Justification);
     }
 }

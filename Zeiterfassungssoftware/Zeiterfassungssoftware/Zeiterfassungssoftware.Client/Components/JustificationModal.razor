@@ -6,24 +6,27 @@
                 <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
             </svg>
         </div>
+
         <h2 class="confirmation-heading-text-with-important-tone">
             Please provide a reason for the change
         </h2>
 
         <p class="confirmation-subtitle-that-explains-regret">
-            You edited this entry. Please explain why below (required).<br>
+            You edited this entry. Please explain why below (required).<br />
             This will overwrite any existing justification.
         </p>
 
         <div class="justification-input-row">
-            <TextField @bind-Value="Justification" PlaceHolder="Enter your reason..." Multiline="true" Class="justification-textfield edit-textfield edit-textfield-multiline justification-textfield-large" />
+            <textarea @bind="Justification" @bind:event="oninput" placeholder="Enter your reason..."></textarea>
         </div>
 
         <div class="button-row-container-that-holds-critical-decisions">
             <button class="cancel-button-with-safe-neutral-feelings" @onclick="@OnCancelClicked">
                 🡐 Back
             </button>
-            <button class="confirm-button-with-irrevocable-consequences" @onclick="@OnConfirmClicked">
+            <button class="confirm-button-with-irrevocable-consequences"
+                    disabled="@(!CanSave)"
+                    @onclick="@OnConfirmClicked">
                 Save
             </button>
         </div>
