@@ -1,5 +1,16 @@
 /* CSS for JustificationModal component */
 
+.justification-modal {
+    --justification-accent: #bb86fc;
+    --justification-accent-hover: rgb(147, 94, 212);
+    --justification-icon-color-bg: rgba(96, 165, 250, 0.15);
+    --justification-input-bg: #0f1115;
+    --justification-input-border: #374151;
+    --justification-input-text: #f9fafb;
+    --justification-disabled-bg: #4b5563;
+    --justification-disabled-text: #9ca3af;
+}
+
 .icon-wrapper-for-important-info {
     display: flex;
     align-items: center;
@@ -8,7 +19,7 @@
     height: 56px;
     margin: 0 auto;
     border-radius: 9999px;
-    background-color: rgba(96, 165, 250, 0.15);
+    background-color: var(--justification-icon-color-bg);
 }
 
 .justification-modal-container {
@@ -27,17 +38,26 @@
     width: 100%;
     height: 110px;
     padding: 10px 12px;
-    border: 1px solid #374151;
+    border: 1px solid var(--justification-input-border);
     border-radius: 10px;
-    background-color: #0f1115;
-    color: #f9fafb;
+    background-color: var(--justification-input-bg);
+    color: var(--justification-input-text);
     resize: none;
 }
 
 .justification-modal .confirm-button-with-irrevocable-consequences {
-    background-color: #bb86fc;
+    background-color: var(--justification-accent);
 }
 
     .justification-modal .confirm-button-with-irrevocable-consequences:hover {
-        background-color: rgb(147, 94, 212);
+        background-color: var(--justification-accent-hover);
+    }
+
+    .justification-modal .confirm-button-with-irrevocable-consequences:disabled,
+    .justification-modal .confirm-button-with-irrevocable-consequences:disabled:hover,
+    .justification-modal .confirm-button-with-irrevocable-consequences:disabled:active {
+        background-color: var(--justification-disabled-bg);
+        color: var(--justification-disabled-text);
+        cursor: not-allowed;
+        transform: none;
     }
