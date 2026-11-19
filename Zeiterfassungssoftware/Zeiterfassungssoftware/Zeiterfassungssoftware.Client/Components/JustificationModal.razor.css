@@ -41,14 +41,3 @@
     .justification-modal .confirm-button-with-irrevocable-consequences:hover {
         background-color: rgb(147, 94, 212);
     }
-
-.entry-edited-badge {
-    display: inline-block;
-    margin-top: 4px;
-    padding: 2px 8px;
-    border-radius: 9999px;
-    font-size: 0.75rem;
-    background-color: rgba(251, 191, 36, 0.15);
-    color: #fbbf24;
-    cursor: help;
-}
