@@ -27,6 +27,23 @@ namespace Zeiterfassungssoftware.Client.Pages
 
         public bool DisplayDeleteModal { get; set; }
 
+        public bool DisplayJustificationModal { get; set; }
+
+        private DateOnly _originalStartDate;
+        private TimeOnly _originalStartTime;
+        private DateOnly? _originalEndDate;
+        private TimeOnly? _originalEndTime;
+        private string _originalTitle = string.Empty;
+        private string _originalDescription = string.Empty;
+
+        private bool HasChanges =>
+            StartDate != _originalStartDate ||
+            StartTime != _originalStartTime ||
+            EndDate != _originalEndDate ||
+            EndTime != _originalEndTime ||
+            !string.Equals(Entry?.Title, _originalTitle, StringComparison.Ordinal) ||
+            !string.Equals(Entry?.Description, _originalDescription, StringComparison.Ordinal);
+
         protected override async Task OnInitializedAsync()
         {
             Entry = await TimeEntrySource.GetEntryById(Id);
@@ -36,6 +53,12 @@ namespace Zeiterfassungssoftware.Client.Pages
             DateTime End = Entry.End.GetValueOrDefault(DateTime.Now);
             EndDate = DateOnly.FromDateTime(End);
             EndTime = TimeOnly.FromDateTime(End);
+            _originalStartDate = StartDate;
+            _originalStartTime = StartTime;
+            _originalEndDate = EndDate;
+            _originalEndTime = EndTime;
+            _originalTitle = Entry.Title;
+            _originalDescription = Entry.Description;
         }
 
         private void UpdateEntry()
@@ -51,11 +74,14 @@ namespace Zeiterfassungssoftware.Client.Pages
                 Entry.End = EndDate.Value.ToDateTime(EndTime.Value);
         }
 
-        private async void SaveChanges()
+        private void SaveChanges()
         {
-            UpdateEntry();
-            await TimeEntrySource.UpdateEntry(Entry.Id, Entry);
-            Navigation.NavigateTo("/history");
+            if (!HasChanges)
+            {
+                Navigation.NavigateTo("/history");
+                return;
+            }
+            DisplayJustificationModal = true;
         }
 
         private void DeleteClicked()
