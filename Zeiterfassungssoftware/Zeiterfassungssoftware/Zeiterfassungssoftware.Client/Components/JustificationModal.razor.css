@@ -1,0 +1,54 @@
+/* CSS for JustificationModal component */
+
+.icon-wrapper-for-important-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 56px;
+    height: 56px;
+    margin: 0 auto;
+    border-radius: 9999px;
+    background-color: rgba(96, 165, 250, 0.15);
+}
+
+.justification-modal-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 420px;
+}
+
+.justification-input-row {
+    width: 100%;
+    margin-top: 16px;
+}
+
+.justification-modal textarea {
+    width: 100%;
+    height: 110px;
+    padding: 10px 12px;
+    border: 1px solid #374151;
+    border-radius: 10px;
+    background-color: #0f1115;
+    color: #f9fafb;
+    resize: none;
+}
+
+.justification-modal .confirm-button-with-irrevocable-consequences {
+    background-color: #bb86fc;
+}
+
+    .justification-modal .confirm-button-with-irrevocable-consequences:hover {
+        background-color: rgb(147, 94, 212);
+    }
+
+.entry-edited-badge {
+    display: inline-block;
+    margin-top: 4px;
+    padding: 2px 8px;
+    border-radius: 9999px;
+    font-size: 0.75rem;
+    background-color: rgba(251, 191, 36, 0.15);
+    color: #fbbf24;
+    cursor: help;
+}
