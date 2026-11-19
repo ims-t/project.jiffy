@@ -14,7 +14,7 @@ namespace Zeiterfassungssoftware.Mapper
             {
                 Id = classDto.Id,
                 Name = classDto.Name,
-                ShouldTimes = classDto.ShouldTimes.Select(e => ShouldTimeMapper.FromDTO(e)).ToList()
+                RequiredTimes = classDto.RequiredTimes.Select(e => RequiredTimeMapper.FromDTO(e)).ToList()
             };
         }
 
@@ -27,7 +27,7 @@ namespace Zeiterfassungssoftware.Mapper
             {
                 Id = _class.Id,
                 Name = _class.Name,
-                ShouldTimes = _class.ShouldTimes.Where(e => e.ValidUntil > DateTime.Now).Select(e => ShouldTimeMapper.ToDTO(e)).ToList()
+                RequiredTimes = _class.RequiredTimes.Where(e => e.ValidUntil > DateTime.Now).Select(e => RequiredTimeMapper.ToDTO(e)).ToList()
             };
         }
 

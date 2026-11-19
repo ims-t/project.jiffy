@@ -11,7 +11,7 @@ namespace Zeiterfassungssoftware.Data
         public virtual DbSet<ActivityTitle> Activitys { get; set; }
         public virtual DbSet<Entry> Entries { get; set; }
         public virtual DbSet<Class> Classes { get; set; }
-        public virtual DbSet<ShouldTime> ShouldTimes { get; set; }
+        public virtual DbSet<RequiredTime> RequiredTimes { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

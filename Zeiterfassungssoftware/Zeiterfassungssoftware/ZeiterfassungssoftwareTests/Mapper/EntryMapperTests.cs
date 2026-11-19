@@ -98,7 +98,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
         [TestMethod()]
         public void ToDTOValid()
         {
-            var shouldTime = new ShouldTime()
+            var RequiredTime = new RequiredTime()
             {
                 Id = Guid.NewGuid(),
                 DayOfWeek = DayOfWeek.Monday,
@@ -114,8 +114,8 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 End = DateTime.Now,
                 Title = "Development",
                 Description = "Working on feature implementation",
-                ShouldTimeId = shouldTime.Id,
-                ShouldTime = shouldTime,
+                RequiredTimeId = RequiredTime.Id,
+                RequiredTime = RequiredTime,
                 UserId = "user123"
             };
 
@@ -126,7 +126,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 End = entry.End,
                 Title = entry.Title,
                 Description = entry.Description,
-                ShouldTime = shouldTime.Should
+                RequiredTime = RequiredTime.Should
             };
 
             Assert.AreEqual(timeEntryDto, EntryMapper.ToDTO(entry));
@@ -135,7 +135,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
         [TestMethod()]
         public void ToDTOValidWithNullEnd()
         {
-            var shouldTime = new ShouldTime()
+            var RequiredTime = new RequiredTime()
             {
                 Id = Guid.NewGuid(),
                 DayOfWeek = DayOfWeek.Monday,
@@ -151,8 +151,8 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 End = null,
                 Title = "Development",
                 Description = "Working on feature implementation",
-                ShouldTimeId = shouldTime.Id,
-                ShouldTime = shouldTime,
+                RequiredTimeId = RequiredTime.Id,
+                RequiredTime = RequiredTime,
                 UserId = "user123"
             };
 
@@ -162,13 +162,13 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             Assert.IsNull(result.End);
             Assert.AreEqual(entry.Title, result.Title);
             Assert.AreEqual(entry.Description, result.Description);
-            Assert.AreEqual(shouldTime.Should, result.ShouldTime);
+            Assert.AreEqual(RequiredTime.Should, result.RequiredTime);
         }
 
         [TestMethod()]
         public void ToDTONotEqual()
         {
-            var shouldTime = new ShouldTime()
+            var RequiredTime = new RequiredTime()
             {
                 Id = Guid.NewGuid(),
                 DayOfWeek = DayOfWeek.Monday,
@@ -184,8 +184,8 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 End = DateTime.Now,
                 Title = "Development",
                 Description = "Working on feature implementation",
-                ShouldTimeId = shouldTime.Id,
-                ShouldTime = shouldTime,
+                RequiredTimeId = RequiredTime.Id,
+                RequiredTime = RequiredTime,
                 UserId = "user123"
             };
 
@@ -196,7 +196,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 End = DateTime.Now,
                 Title = "Testing",
                 Description = "Writing unit tests",
-                ShouldTime = TimeSpan.FromHours(6)
+                RequiredTime = TimeSpan.FromHours(6)
             };
 
             Assert.AreNotEqual(timeEntryDto, EntryMapper.ToDTO(entry));

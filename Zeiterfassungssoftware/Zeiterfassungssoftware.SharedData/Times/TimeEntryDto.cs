@@ -16,8 +16,8 @@ namespace Zeiterfassungssoftware.SharedData.Times
         public string Username { get; set; } = string.Empty;
         
         public TimeSpan Time => (End != null ? End - Start : DateTime.Now-Start).Value;
-        public TimeSpan ShouldTime { get; set; }
-        public TimeSpan Overtime => Time - ShouldTime;
+        public TimeSpan RequiredTime { get; set; }
+        public TimeSpan Overtime => Time - RequiredTime;
 
 
         

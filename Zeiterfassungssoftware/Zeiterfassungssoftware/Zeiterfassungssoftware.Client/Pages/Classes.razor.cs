@@ -1,6 +1,6 @@
 using Microsoft.AspNetCore.Components;
 using Zeiterfassungssoftware.SharedData.Classes;
-using Zeiterfassungssoftware.SharedData.ShouldTimes;
+using Zeiterfassungssoftware.SharedData.RequiredTimes;
 
 namespace Zeiterfassungssoftware.Client.Pages
 {
@@ -9,12 +9,12 @@ namespace Zeiterfassungssoftware.Client.Pages
         [Inject]
         public IClassProvider ClassSource { get; set; }
         [Inject]
-        public IShouldTimeProvider ShouldTimeSource { get; set; }
+        public IRequiredTimeProvider RequiredTimeSource { get; set; }
 
         public ClassDto SelectedClass { get; set; } = new();
         public Guid SelectedGuid { get; set; }
 
-        public List<ShouldTimeDto> Original { get; set; } = new();
+        public List<RequiredTimeDto> Original { get; set; } = new();
 
         public Timer? Timer { get; set; }
 
@@ -33,7 +33,7 @@ namespace Zeiterfassungssoftware.Client.Pages
         {
             SelectedGuid = Guid.Parse(args.Value.ToString());
             SelectedClass = SelectedGuid.Equals(Guid.Empty) ? new() : ClassSource.GetClasses().FirstOrDefault(e => e.Id.Equals(SelectedGuid)) ?? new();
-            Original = new(SelectedClass.ShouldTimes);
+            Original = new(SelectedClass.RequiredTimes);
         }
 
         public async Task SaveClass()
@@ -41,12 +41,12 @@ namespace Zeiterfassungssoftware.Client.Pages
             if (SelectedGuid == Guid.Empty)
             {
                 var ConfirmedClass = await ClassSource.CreateClass(SelectedClass);
-                for (int i = 0; i < SelectedClass.ShouldTimes.Count; i++)
+                for (int i = 0; i < SelectedClass.RequiredTimes.Count; i++)
                 {
-                    var ShouldTime = SelectedClass.ShouldTimes[i];
-                    ShouldTime.ClassId = ConfirmedClass.Id;
-                    var ConfirmedShouldTime = await ShouldTimeSource.CreateShouldTime(ShouldTime);
-                    SelectedClass.ShouldTimes[i] = ConfirmedShouldTime;
+                    var RequiredTime = SelectedClass.RequiredTimes[i];
+                    RequiredTime.ClassId = ConfirmedClass.Id;
+                    var ConfirmedRequiredTime = await RequiredTimeSource.CreateRequiredTime(RequiredTime);
+                    SelectedClass.RequiredTimes[i] = ConfirmedRequiredTime;
                 }
                 // ???
                 SelectedClass = await ClassSource.UpdateClass(ConfirmedClass.Id, SelectedClass);
@@ -55,17 +55,17 @@ namespace Zeiterfassungssoftware.Client.Pages
             else
             {
                 // Temporary Fix
-                foreach (var ShouldTime in Original)
+                foreach (var RequiredTime in Original)
                 {
-                    await ShouldTimeSource.DeleteShouldTime(ShouldTime.Id);
+                    await RequiredTimeSource.DeleteRequiredTime(RequiredTime.Id);
                 }
 
-                for (int i = 0; i < SelectedClass.ShouldTimes.Count; i++)
+                for (int i = 0; i < SelectedClass.RequiredTimes.Count; i++)
                 {
-                    var ShouldTime = SelectedClass.ShouldTimes[i];
-                    ShouldTime.ClassId = SelectedClass.Id;
-                    var ConfirmedShouldTime = await ShouldTimeSource.CreateShouldTime(ShouldTime);
-                    SelectedClass.ShouldTimes[i] = ConfirmedShouldTime;
+                    var RequiredTime = SelectedClass.RequiredTimes[i];
+                    RequiredTime.ClassId = SelectedClass.Id;
+                    var ConfirmedRequiredTime = await RequiredTimeSource.CreateRequiredTime(RequiredTime);
+                    SelectedClass.RequiredTimes[i] = ConfirmedRequiredTime;
                 }
 
                 SelectedClass = await ClassSource.UpdateClass(SelectedClass.Id, SelectedClass);

@@ -1,6 +1,6 @@
 ﻿namespace Zeiterfassungssoftware.Data.Jiffy.Models
 {
-    public partial class ShouldTime
+    public partial class RequiredTime
     {
         public Guid Id { get; set; }
 
@@ -12,7 +12,7 @@
 
         public override bool Equals(object? obj)
         {
-            if (obj is not ShouldTime other)
+            if (obj is not RequiredTime other)
                 return false;
 
             return this.Id == other.Id;

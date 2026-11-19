@@ -1,8 +1,8 @@
 ﻿using Zeiterfassungssoftware.SharedData.Users;
 
-namespace Zeiterfassungssoftware.SharedData.ShouldTimes
+namespace Zeiterfassungssoftware.SharedData.RequiredTimes
 {
-    public class ShouldTimeDto
+    public class RequiredTimeDto
     {
         public Guid Id { get; set; }
         public Guid ClassId { get; set; }
@@ -11,7 +11,7 @@ namespace Zeiterfassungssoftware.SharedData.ShouldTimes
 
         public override bool Equals(object? obj)
         {
-            if (obj is ShouldTimeDto other)
+            if (obj is RequiredTimeDto other)
                 return other.Id == this.Id;
             return false;
         }

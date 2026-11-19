@@ -54,7 +54,7 @@ namespace Zeiterfassungssoftware.Client.Pages
                 foreach (var Entry in Day)
                     Overtime += Entry.Time;
                 
-                Overtime -= CurrentDay.ShouldTime;
+                Overtime -= CurrentDay.RequiredTime;
             }
         }
 

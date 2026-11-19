@@ -30,7 +30,7 @@ namespace Zeiterfassungssoftware.Controller
         public async Task<ActionResult<List<ClassDto>>> GetAllClasses()
         {
             var Classes = await _context.Classes
-                 .Include(e => e.ShouldTimes)
+                 .Include(e => e.RequiredTimes)
                  .Select(e => ClassMapper.ToDTO(e))
                  .ToListAsync();
 
@@ -47,7 +47,7 @@ namespace Zeiterfassungssoftware.Controller
         public async Task<ActionResult<ClassDto>> GetClassById(Guid id)
         {
             var Class = await _context.Classes
-                .Include(e => e.ShouldTimes)
+                .Include(e => e.RequiredTimes)
                 .FirstOrDefaultAsync(e => e.Id == id);
 
             if (Class is null)
@@ -69,19 +69,19 @@ namespace Zeiterfassungssoftware.Controller
                 return BadRequest();
 
             var Class = await _context.Classes
-                .Include(e => e.ShouldTimes)
+                .Include(e => e.RequiredTimes)
                 .FirstOrDefaultAsync(e => e.Id == id);
 
             if (Class is null)
                 return NotFound();
 
 
-            var ShouldTimes = _context.ShouldTimes
+            var RequiredTimes = _context.RequiredTimes
                 .Where(e => e.ClassId == id && e.ValidUntil > DateTime.Now);
 
-            foreach (var ShouldTime in ShouldTimes.Where(e => e.ValidUntil > DateTime.Now))
+            foreach (var RequiredTime in RequiredTimes.Where(e => e.ValidUntil > DateTime.Now))
             {
-                ShouldTime.ValidUntil = DateTime.Now;
+                RequiredTime.ValidUntil = DateTime.Now;
             }
 
             foreach(var User in _context.Users.Where(e => e.ClassId == Class.Id))
@@ -134,7 +134,7 @@ namespace Zeiterfassungssoftware.Controller
                 return BadRequest("Invalid data");
 
             var DbClass = await _context.Classes
-                .Include(c => c.ShouldTimes)
+                .Include(c => c.RequiredTimes)
                 .FirstOrDefaultAsync(c => c.Id == id);
 
             if (DbClass is null)
