@@ -23,8 +23,10 @@
 
                 <div class="history-filter-settings history-filter-display-@(ShowFilters ? "block" : "none")">
                     <div class="flex-div-wrap">
-                        @foreach (var Filter in Filters)
+                        @foreach (var filterItem in Filters)
                         {
+                            var Filter = filterItem.Filter;
+
                             <p class="filter-control-element @(Filter.Enabled ? "filter-enabled" : "filter-disabled")" @onclick="() => OnFilterClicked(Filter)">
                                 @Filter.Name
                             </p>

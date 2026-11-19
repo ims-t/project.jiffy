@@ -17,17 +17,16 @@ namespace Zeiterfassungssoftware.Client.Pages
         public TimeSpan Overtime { get; set; } = new TimeSpan(0, 0, 0);
 
 
-        private IFilter[] Filters =
+        private (IFilter Filter, Func<TimeEntryDto, object> Value)[] Filters =
         [
-            new DateFilter("Date"),
-            new TimeFilter("Start Time"),
-            new TimeFilter("Stop Time"),
-            new StringFilter("Activity"),
-            new StringFilter("Description"),
-            new StringFilter("Username"),
+            (new DateFilter("Date"), e => e.Start),
+            (new TimeFilter("Start Time"), e => e.Start),
+            (new TimeFilter("Stop Time"), e => e.End ?? DateTime.Now),
+            (new StringFilter("Activity"), e => e.Title),
+            (new StringFilter("Description"), e => e.Description)
         ];
-
-        private IFilter SelectedFilter => Filters.FirstOrDefault(e => e.PopUp);
+         
+        private IFilter SelectedFilter => Filters.Select(e => e.Filter).FirstOrDefault(e => e.PopUp);
 
         private IEnumerable<TimeEntryDto> FilteredEntries =>
             TimeEntrySource.GetEntries()
@@ -35,9 +34,7 @@ namespace Zeiterfassungssoftware.Client.Pages
                 .Take(LastCount);
 
         private string OvertimeDisplay =>
-            Math.Abs(Overtime.TotalHours) < 1
-                ? $"{Math.Floor(Overtime.TotalMinutes)}min"
-                : $"{Math.Floor(Overtime.TotalHours)}h";
+            $"{(int)Overtime.TotalHours}h {Math.Abs(Overtime.Minutes)}min";
 
         protected override void OnInitialized()
         {
@@ -81,12 +78,7 @@ namespace Zeiterfassungssoftware.Client.Pages
 
         public bool DoFiltersApply(TimeEntryDto Entry)
 		{
-			return Filters[0].MatchesCriteria(Entry.Start) && 
-                   Filters[1].MatchesCriteria(Entry.Start) &&
-				   Filters[2].MatchesCriteria(Entry.End ?? DateTime.Now) && 
-                   Filters[3].MatchesCriteria(Entry.Title) &&
-				   Filters[4].MatchesCriteria(Entry.Description) && 
-                   Filters[5].MatchesCriteria(Entry.Username);
+            return Filters.All(e => e.Filter.MatchesCriteria(e.Value(Entry)));
 		}
 
         void IDisposable.Dispose()
