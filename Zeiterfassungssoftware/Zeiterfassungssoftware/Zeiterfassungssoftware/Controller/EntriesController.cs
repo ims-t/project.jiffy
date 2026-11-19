@@ -196,6 +196,20 @@ namespace Zeiterfassungssoftware.Services
             if (Entry is null)
                 return NotFound();
 
+            bool changed = Entry.Start != entryDto.Start
+            || Entry.End != entryDto.End
+            || Entry.Title != entryDto.Title
+            || Entry.Description != entryDto.Description;
+
+            if (Entry.End is not null && changed)
+            {
+                if (string.IsNullOrWhiteSpace(entryDto.Justification))
+                    return BadRequest("Begründung wird benötigt.");
+
+                Entry.Justification = entryDto.Justification;
+                Entry.EditedAt = DateTime.Now;
+            }
+
             Entry.Start = entryDto.Start;
             Entry.End = entryDto.End;
             Entry.Title = entryDto.Title;

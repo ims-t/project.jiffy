@@ -11,6 +11,14 @@
     <div class="entry-total">
         <div>@Entry.GetTimeString()</div>
         <div class="entry-username">@Entry.Username</div>
+
+        @if (Entry.EditedAt is not null)
+            {
+                <div class="entry-edited-badge" title="Bearbeitet am @Entry.EditedAt.Value.ToString("dd.MM.yyyy HH:mm"): @Entry.Justification">
+                        ✎ bearbeitet
+                </div>
+            }
+
     </div>
     <div class="entry-description">
         @Entry.Description
