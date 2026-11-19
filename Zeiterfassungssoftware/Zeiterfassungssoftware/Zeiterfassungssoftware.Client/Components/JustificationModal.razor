@@ -1,0 +1,31 @@
+﻿<div class="confirmation-dialog-class-with-too-many-responsibilities justification-modal">
+    <div class="confirmation-dialog-container-with-excessively-descriptive-naming justification-modal-container">
+        <div class="icon-wrapper-for-important-info">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 16 16" fill="#60a5fa">
+                <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5z" />
+            </svg>
+        </div>
+        <h2 class="confirmation-heading-text-with-important-tone">
+            Please provide a reason for the change
+        </h2>
+
+        <p class="confirmation-subtitle-that-explains-regret">
+            You edited this entry. Please explain why below (required).<br>
+            This will overwrite any existing justification.
+        </p>
+
+        <div class="justification-input-row">
+            <TextField @bind-Value="Justification" PlaceHolder="Enter your reason..." Multiline="true" Class="justification-textfield edit-textfield edit-textfield-multiline justification-textfield-large" />
+        </div>
+
+        <div class="button-row-container-that-holds-critical-decisions">
+            <button class="cancel-button-with-safe-neutral-feelings" @onclick="@OnCancelClicked">
+                🡐 Back
+            </button>
+            <button class="confirm-button-with-irrevocable-consequences" @onclick="@OnConfirmClicked">
+                Save
+            </button>
+        </div>
+    </div>
+</div>
