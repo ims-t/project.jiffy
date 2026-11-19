@@ -302,7 +302,7 @@ namespace Zeiterfassungssoftware.Migrations
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime");
 
-                    b.Property<Guid?>("ShouldTimeId")
+                    b.Property<Guid?>("RequiredTimeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Start")
@@ -320,14 +320,14 @@ namespace Zeiterfassungssoftware.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ShouldTimeId");
+                    b.HasIndex("RequiredTimeId");
 
                     b.HasIndex("UserId");
 
                     b.ToTable("Entries", (string)null);
                 });
 
-            modelBuilder.Entity("Zeiterfassungssoftware.Data.Jiffy.Models.ShouldTime", b =>
+            modelBuilder.Entity("Zeiterfassungssoftware.Data.Jiffy.Models.RequiredTime", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -349,7 +349,7 @@ namespace Zeiterfassungssoftware.Migrations
 
                     b.HasIndex("ClassId");
 
-                    b.ToTable("ShouldTimes");
+                    b.ToTable("RequiredTimes");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -438,9 +438,9 @@ namespace Zeiterfassungssoftware.Migrations
 
             modelBuilder.Entity("Zeiterfassungssoftware.Data.Jiffy.Models.Entry", b =>
                 {
-                    b.HasOne("Zeiterfassungssoftware.Data.Jiffy.Models.ShouldTime", "ShouldTime")
+                    b.HasOne("Zeiterfassungssoftware.Data.Jiffy.Models.RequiredTime", "RequiredTime")
                         .WithMany()
-                        .HasForeignKey("ShouldTimeId");
+                        .HasForeignKey("RequiredTimeId");
 
                     b.HasOne("Zeiterfassungssoftware.Data.ApplicationUser", "User")
                         .WithMany("Entries")
@@ -448,15 +448,15 @@ namespace Zeiterfassungssoftware.Migrations
                         .IsRequired()
                         .HasConstraintName("FK_Entry_Users");
 
-                    b.Navigation("ShouldTime");
+                    b.Navigation("RequiredTime");
 
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("Zeiterfassungssoftware.Data.Jiffy.Models.ShouldTime", b =>
+            modelBuilder.Entity("Zeiterfassungssoftware.Data.Jiffy.Models.RequiredTime", b =>
                 {
                     b.HasOne("Zeiterfassungssoftware.Data.Jiffy.Models.Class", "Class")
-                        .WithMany("ShouldTimes")
+                        .WithMany("RequiredTimes")
                         .HasForeignKey("ClassId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -475,7 +475,7 @@ namespace Zeiterfassungssoftware.Migrations
 
             modelBuilder.Entity("Zeiterfassungssoftware.Data.Jiffy.Models.Class", b =>
                 {
-                    b.Navigation("ShouldTimes");
+                    b.Navigation("RequiredTimes");
                 });
 #pragma warning restore 612, 618
         }

@@ -51,7 +51,7 @@ a:hover {
     transition: 1s;
 }
 
-.shouldtimes-body {
+.RequiredTimes-body {
     background-color: #121212;
     margin-top: 5px;
     margin-bottom: 5px;
@@ -59,14 +59,14 @@ a:hover {
     padding: 10px;
 }
 
-.shouldtime {
+.RequiredTime {
     position: relative;
     background-color: #292929;
     border-radius: 25px;
     padding: 5px;
 }
 
-.remove-shouldtime {
+.remove-RequiredTime {
     position: absolute;
     top: 5px;
     right: 5px;
@@ -77,11 +77,11 @@ a:hover {
 }
 
 
-.remove-shouldtime:hover {
+.remove-RequiredTime:hover {
     color: red;
 }
 
-.shouldtime-info {
+.RequiredTime-info {
     margin: 5px;
 }
 
@@ -1134,7 +1134,7 @@ textarea {
     border-radius: 15px;
 }
 
-.shouldtime-dayofweek-select {
+.RequiredTime-dayofweek-select {
     height: 41px;
 }
 
@@ -1143,7 +1143,7 @@ textarea {
     color: #ffffff;
 }
 
-.shouldtimes-body {
+.RequiredTimes-body {
     background-color: #333;
     border-radius: 16px;
     padding: 1.5rem;
@@ -1152,7 +1152,7 @@ textarea {
     border: 1px solid #444;
 }
 
-.shouldtime {
+.RequiredTime {
     display: flex;
     align-items: center;
     gap: 12px;
@@ -1164,17 +1164,17 @@ textarea {
     transition: all 0.3s ease;
 }
 
-    .shouldtime:hover {
+    .RequiredTime:hover {
         background-color: #404040;
         transform: translateY(-1px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
     }
 
-    .shouldtime:last-of-type {
+    .RequiredTime:last-of-type {
         margin-bottom: 0;
     }
 
-.remove-shouldtime {
+.remove-RequiredTime {
     background-color: #dc3545;
     color: white;
     border: none;
@@ -1191,20 +1191,20 @@ textarea {
     flex-shrink: 0;
 }
 
-    .remove-shouldtime:hover {
+    .remove-RequiredTime:hover {
         background-color: #c82333;
         transform: scale(1.1);
         box-shadow: 0 4px 12px rgba(220, 53, 69, 0.4);
     }
 
-.shouldtime-info {
+.RequiredTime-info {
     display: flex;
     gap: 12px;
     flex: 1;
     align-items: center;
 }
 
-    .shouldtime-info select {
+    .RequiredTime-info select {
         flex: 1;
         margin-bottom: 0;
         min-width: 120px;
@@ -1212,7 +1212,7 @@ textarea {
         font-size: 14px;
     }
 
-    .shouldtime-info input[type="time"] {
+    .RequiredTime-info input[type="time"] {
         padding: 8px 12px;
         background-color: #404040;
         border: 2px solid #4a4a4a;
@@ -1223,7 +1223,7 @@ textarea {
         min-width: 120px;
     }
 
-        .shouldtime-info input[type="time"]:focus {
+        .RequiredTime-info input[type="time"]:focus {
             outline: none;
             border-color: #007bff;
             box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
@@ -1273,18 +1273,18 @@ textarea {
         width: 100%;
     }
 
-    .shouldtime {
+    .RequiredTime {
         flex-direction: column;
         align-items: stretch;
         gap: 8px;
     }
 
-    .shouldtime-info {
+    .RequiredTime-info {
         flex-direction: column;
         gap: 8px;
     }
 
-    .remove-shouldtime {
+    .remove-RequiredTime {
         align-self: flex-end;
     }
 
@@ -1295,7 +1295,7 @@ textarea {
     }
 }
 
-.shouldtimes-body:empty::before {
+.RequiredTimes-body:empty::before {
     content: "No schedule times added yet. Click the + button to add one.";
     display: block;
     text-align: center;

@@ -50,7 +50,7 @@ namespace Zeiterfassungssoftware.Services
                     .OrderByDescending(e => e.Start)
                     .Skip(start)
                     .Take(limit)
-                    .Include(e => e.ShouldTime)
+                    .Include(e => e.RequiredTime)
                     .ToListAsync();
 
                 var UserIds = Entries.Select(e => e.UserId).Distinct().ToList();
@@ -75,7 +75,7 @@ namespace Zeiterfassungssoftware.Services
                     .OrderByDescending(e => e.Start)
                     .Skip(start)
                     .Take(limit)
-                    .Include(e => e.ShouldTime)
+                    .Include(e => e.RequiredTime)
                     .Select(e => EntryMapper.ToDTO(e))
                     .ToListAsync();
 
@@ -96,7 +96,7 @@ namespace Zeiterfassungssoftware.Services
             if (string.IsNullOrEmpty(UserId))
                 return Unauthorized();
 
-            Entry? Entry = await _context.Entries.Include(e => e.ShouldTime).FirstOrDefaultAsync(e => e.Id == id && ((e.UserId == UserId) || (User.IsInRole("Administrator"))));
+            Entry? Entry = await _context.Entries.Include(e => e.RequiredTime).FirstOrDefaultAsync(e => e.Id == id && ((e.UserId == UserId) || (User.IsInRole("Administrator"))));
                 
             if (Entry is null)
                 return NotFound();
@@ -134,11 +134,11 @@ namespace Zeiterfassungssoftware.Services
             Entry.UserId = UserId;
 
 
-            var ShouldTimes = await _context.ShouldTimes.Where(e => e.ValidUntil > DateTime.Now && e.ClassId == DbUser.ClassId).ToListAsync();
-            var ShouldTime = ShouldTimes.FirstOrDefault(e => e.DayOfWeek == DateTime.Now.DayOfWeek);
+            var RequiredTimes = await _context.RequiredTimes.Where(e => e.ValidUntil > DateTime.Now && e.ClassId == DbUser.ClassId).ToListAsync();
+            var RequiredTime = RequiredTimes.FirstOrDefault(e => e.DayOfWeek == DateTime.Now.DayOfWeek);
 
-            if ((ShouldTime is not null) && !EntryMapper.IsHoliday(DateTime.Now))
-                Entry.ShouldTimeId = ShouldTime.Id;
+            if ((RequiredTime is not null) && !EntryMapper.IsHoliday(DateTime.Now))
+                Entry.RequiredTimeId = RequiredTime.Id;
 
             _context.Entries.Add(Entry);
             await _context.SaveChangesAsync();
@@ -192,7 +192,7 @@ namespace Zeiterfassungssoftware.Services
             if (string.IsNullOrEmpty(UserId))
                 return Unauthorized();
 
-            Entry? Entry = await _context.Entries.Include(e => e.ShouldTime).FirstOrDefaultAsync(e => (e.Id == id) && ((e.UserId == UserId) || (User.IsInRole("Administrator"))));
+            Entry? Entry = await _context.Entries.Include(e => e.RequiredTime).FirstOrDefaultAsync(e => (e.Id == id) && ((e.UserId == UserId) || (User.IsInRole("Administrator"))));
 
             if (Entry is null)
                 return NotFound();

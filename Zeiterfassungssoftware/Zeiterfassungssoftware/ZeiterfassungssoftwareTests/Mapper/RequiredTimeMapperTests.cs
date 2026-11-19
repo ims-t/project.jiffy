@@ -8,24 +8,24 @@ using Zeiterfassungssoftware.Client.Pages;
 using Zeiterfassungssoftware.Data;
 using Zeiterfassungssoftware.Data.Jiffy.Models;
 using Zeiterfassungssoftware.Mapper;
-using Zeiterfassungssoftware.SharedData.ShouldTimes;
+using Zeiterfassungssoftware.SharedData.RequiredTimes;
 using Zeiterfassungssoftware.SharedData.Users;
 
 namespace Zeiterfassungssoftware.Mapper.Tests
 {
     [TestClass()]
-    public class ShouldTimeMapperTests
+    public class RequiredTimeMapperTests
     {
         [TestMethod()]
         public void ToDTONullArgumentTest()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => ShouldTimeMapper.ToDTO(null));
+            Assert.ThrowsException<ArgumentNullException>(() => RequiredTimeMapper.ToDTO(null));
         }
 
         [TestMethod()]
         public void FromDTONullArgumentTest()
         {
-            Assert.ThrowsException<ArgumentNullException>(() => ShouldTimeMapper.FromDTO(null));
+            Assert.ThrowsException<ArgumentNullException>(() => RequiredTimeMapper.FromDTO(null));
         }
 
         [TestMethod()]
@@ -34,7 +34,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             var Id = Guid.NewGuid();
             var ClassId = Guid.NewGuid();
 
-            var ShouldTime = new ShouldTime()
+            var RequiredTime = new RequiredTime()
             {
                 Id = Id,
                 ClassId = ClassId,
@@ -43,7 +43,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 ValidUntil = DateTime.Now
             };
 
-            var ShouldTimeDto = new ShouldTimeDto()
+            var RequiredTimeDto = new RequiredTimeDto()
             {
                 Id = Id,
                 ClassId = ClassId,
@@ -51,7 +51,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Should = new TimeSpan(2, 0, 0)
             };
 
-            Assert.AreEqual(ShouldTimeDto, ShouldTimeMapper.ToDTO(ShouldTime));
+            Assert.AreEqual(RequiredTimeDto, RequiredTimeMapper.ToDTO(RequiredTime));
         }
 
         [TestMethod()]
@@ -60,7 +60,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             var Id = Guid.NewGuid();
             var ClassId = Guid.NewGuid();
 
-            var ShouldTime = new ShouldTime()
+            var RequiredTime = new RequiredTime()
             {
                 Id = Id,
                 ClassId = ClassId,
@@ -69,7 +69,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 ValidUntil = DateTime.Now
             };
 
-            var ShouldTimeDto = new ShouldTimeDto()
+            var RequiredTimeDto = new RequiredTimeDto()
             {
                 Id = Id,
                 ClassId = ClassId,
@@ -77,13 +77,13 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Should = new TimeSpan(2, 0, 0)
             };
 
-            Assert.AreEqual(ShouldTime, ShouldTimeMapper.FromDTO(ShouldTimeDto));
+            Assert.AreEqual(RequiredTime, RequiredTimeMapper.FromDTO(RequiredTimeDto));
         }
 
         [TestMethod()]
         public void FromDTONotEqual()
         {
-            var ShouldTime = new ShouldTime()
+            var RequiredTime = new RequiredTime()
             {
                 Id = Guid.NewGuid(),
                 ClassId = Guid.NewGuid(),
@@ -92,7 +92,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 ValidUntil = DateTime.Now
             };
 
-            var ShouldTimeDto = new ShouldTimeDto()
+            var RequiredTimeDto = new RequiredTimeDto()
             {
                 Id = Guid.NewGuid(),
                 ClassId = Guid.NewGuid(),
@@ -100,13 +100,13 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Should = new TimeSpan(2, 0, 0)
             };
 
-            Assert.AreNotEqual(ShouldTime, ShouldTimeMapper.FromDTO(ShouldTimeDto));
+            Assert.AreNotEqual(RequiredTime, RequiredTimeMapper.FromDTO(RequiredTimeDto));
         }
 
         [TestMethod()]
         public void ToDTONotEqual()
         {
-            var ShouldTime = new ShouldTime()
+            var RequiredTime = new RequiredTime()
             {
                 Id = Guid.NewGuid(),
                 ClassId = Guid.NewGuid(),
@@ -115,7 +115,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 ValidUntil = DateTime.Now
             };
 
-            var ShouldTimeDto = new ShouldTimeDto()
+            var RequiredTimeDto = new RequiredTimeDto()
             {
                 Id = Guid.NewGuid(),
                 ClassId = Guid.NewGuid(),
@@ -123,7 +123,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Should = new TimeSpan(2, 0, 0)
             };
 
-            Assert.AreNotEqual(ShouldTimeDto, ShouldTimeMapper.ToDTO(ShouldTime));
+            Assert.AreNotEqual(RequiredTimeDto, RequiredTimeMapper.ToDTO(RequiredTime));
         }
     }
 }

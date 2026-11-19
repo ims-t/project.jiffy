@@ -3,7 +3,7 @@ using System.Net.Http.Json;
 using System.Text;
 using System.Text.Json;
 using Zeiterfassungssoftware.SharedData.Classes;
-using Zeiterfassungssoftware.SharedData.ShouldTimes;
+using Zeiterfassungssoftware.SharedData.RequiredTimes;
 
 namespace Zeiterfassungssoftware.Client.Services
 {
