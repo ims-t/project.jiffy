@@ -97,7 +97,18 @@ namespace Zeiterfassungssoftware.Client.Pages
             await TimeEntrySource.DeleteEntry(Entry.Id);
             Navigation.NavigateTo("/history");
         }
+        private async Task UpdateEntry_Confirm(string justification)
+        {
+            if (Entry is null || string.IsNullOrWhiteSpace(justification))
+                return;
 
+            UpdateEntry();
+            Entry.Justification = justification;
+
+            await TimeEntrySource.UpdateEntry(Entry.Id, Entry);
+            DisplayJustificationModal = false;
+            Navigation.NavigateTo("/history");
+        }
 
     }
 }
