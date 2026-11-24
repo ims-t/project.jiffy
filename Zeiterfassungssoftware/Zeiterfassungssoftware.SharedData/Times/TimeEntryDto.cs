@@ -8,6 +8,8 @@ namespace Zeiterfassungssoftware.SharedData.Times
         //private const string DURATION_FORMAT = @"h\h\ m\m\i\n\ s\s";
         private const string DATE_FORMAT = "dd MMM yyyy";
 
+        private const string Nbsp = "\u00A0";
+
         public Guid Id { get; set; }
         public DateTime Start { get; set; }
         public DateTime? End { get; set; }
@@ -32,12 +34,12 @@ namespace Zeiterfassungssoftware.SharedData.Times
             var minutes = Math.Abs(time.Minutes);
 
             if (hours != 0)
-                return $"{hours} h {minutes} min";
+                return $"{hours}{Nbsp}h {minutes}{Nbsp}min";
 
             if (minutes != 0)
-                return $"{(int)time.TotalMinutes} min";
+                return $"{(int)time.TotalMinutes}{Nbsp}min";
 
-            return $"{time.Seconds} s";
+            return $"{time.Seconds}{Nbsp}s";
         }
 
         public string GetStartString()
