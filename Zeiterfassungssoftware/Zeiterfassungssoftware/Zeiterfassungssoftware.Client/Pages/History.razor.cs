@@ -33,8 +33,7 @@ namespace Zeiterfassungssoftware.Client.Pages
                 .Where(DoFiltersApply)
                 .Take(LastCount);
 
-        private string OvertimeDisplay =>
-            $"{(int)Overtime.TotalHours}h {Math.Abs(Overtime.Minutes)}min";
+        private string OvertimeDisplay => TimeEntryDto.FormatTime(Overtime);
 
         protected override void OnInitialized()
         {
