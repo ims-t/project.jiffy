@@ -14,8 +14,8 @@
 
         @if (Entry.EditedAt is not null)
             {
-                <div class="entry-edited-badge" title="Bearbeitet am @Entry.EditedAt.Value.ToString("dd.MM.yyyy HH:mm"): @Entry.Justification">
-                        ✎ bearbeitet
+            <div class="entry-edited-badge" title="Bearbeitet von @(Entry.EditedBy ?? "unbekannt") am @Entry.EditedAt.Value.ToString("dd.MM.yyyy HH:mm"): @Entry.Justification">
+                        ✎ bearbeitet von @(Entry.EditedBy ?? "unbekannt")
                 </div>
             }
 
