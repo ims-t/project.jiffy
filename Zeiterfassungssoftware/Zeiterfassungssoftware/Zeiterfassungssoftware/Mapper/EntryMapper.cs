@@ -33,6 +33,9 @@ namespace Zeiterfassungssoftware.Mapper
                 End = entry.End,
                 Title = entry.Title,
                 Description = entry.Description,
+                Justification = entry.Justification ?? string.Empty,
+                EditedAt = entry.EditedAt,
+                EditedBy = entry.EditedBy,
                 ShouldTime = (entry.ShouldTime is not null) ? entry.ShouldTime.Should : new TimeSpan(0, 0, 0, 0, 0, 0)
             };
         }

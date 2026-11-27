@@ -22,6 +22,10 @@
     {
         <DeleteModal OnConfirm="@DeleteEntry" OnCancel="@(() => { DisplayDeleteModal = false; })"/>
     }
+    @if (DisplayJustificationModal)
+    {
+        <JustificationModal OnConfirm="@UpdateEntry_Confirm" OnCancel="@(() => { DisplayJustificationModal = false; })"/>
+    }
     <div class="vertical-center">
         <div class="edit-container">
             <p class="edit-category-title">Date</p>

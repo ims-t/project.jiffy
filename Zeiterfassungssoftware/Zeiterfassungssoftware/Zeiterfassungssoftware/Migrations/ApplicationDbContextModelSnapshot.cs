@@ -299,8 +299,18 @@ namespace Zeiterfassungssoftware.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime?>("EditedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EditedBy")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime?>("End")
                         .HasColumnType("datetime");
+
+                    b.Property<string>("Justification")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid?>("ShouldTimeId")
                         .HasColumnType("uniqueidentifier");

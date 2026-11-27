@@ -9,7 +9,9 @@ public partial class Entry
 
     public string Title { get; set; } = null!;
     public string Description { get; set; } = null!;
-
+    public string Justification { get; set; } = string.Empty;
+    public DateTime? EditedAt { get; set; }
+    public string? EditedBy { get; set; }
     public Guid? ShouldTimeId { get; set; }
     public virtual ShouldTime ShouldTime { get; set; } = null!;
     public string UserId { get; set; } = null!;
