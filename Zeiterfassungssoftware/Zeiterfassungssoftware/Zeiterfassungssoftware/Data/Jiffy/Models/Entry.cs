@@ -10,8 +10,8 @@ public partial class Entry
     public string Title { get; set; } = null!;
     public string Description { get; set; } = null!;
 
-    public Guid? ShouldTimeId { get; set; }
-    public virtual ShouldTime ShouldTime { get; set; } = null!;
+    public Guid? RequiredTimeId { get; set; }
+    public virtual RequiredTime RequiredTime { get; set; } = null!;
     public string UserId { get; set; } = null!;
     public virtual ApplicationUser User { get; set; } = null!;
 

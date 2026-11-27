@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using System.ComponentModel.DataAnnotations;
 using Zeiterfassungssoftware.Data;
 using Zeiterfassungssoftware.Mapper;
-using Zeiterfassungssoftware.SharedData.ShouldTimes;
+using Zeiterfassungssoftware.SharedData.RequiredTimes;
 using Zeiterfassungssoftware.SharedData.Users;
 
 namespace Zeiterfassungssoftware.Controller

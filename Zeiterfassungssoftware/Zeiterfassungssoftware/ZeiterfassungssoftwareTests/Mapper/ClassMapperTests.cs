@@ -1,6 +1,6 @@
 ﻿using Zeiterfassungssoftware.Data.Jiffy.Models;
 using Zeiterfassungssoftware.SharedData.Classes;
-using Zeiterfassungssoftware.SharedData.ShouldTimes;
+using Zeiterfassungssoftware.SharedData.RequiredTimes;
 
 namespace Zeiterfassungssoftware.Mapper.Tests
 {
@@ -18,34 +18,34 @@ namespace Zeiterfassungssoftware.Mapper.Tests
         [TestMethod()]
         public void FromDTOValid()
         {
-            var shouldTimeDto = new ShouldTimeDto()
+            var requiredTimeDto = new RequiredTimeDto()
             {
                 Id = Guid.NewGuid(),
                 ClassId = Guid.NewGuid(),
                 DayOfWeek = DayOfWeek.Monday,
-                Should = TimeSpan.FromHours(8)
+                Required = TimeSpan.FromHours(8)
             };
 
             var classDto = new ClassDto()
             {
                 Id = Guid.NewGuid(),
                 Name = "Computer Science 101",
-                ShouldTimes = new List<ShouldTimeDto> { shouldTimeDto }
+                RequiredTimes = new List<RequiredTimeDto> { requiredTimeDto }
             };
 
-            var shouldTime = new ShouldTime()
+            var requiredTime = new RequiredTime()
             {
-                Id = shouldTimeDto.Id,
-                ClassId = shouldTimeDto.ClassId,
-                DayOfWeek = shouldTimeDto.DayOfWeek,
-                Should = shouldTimeDto.Should
+                Id = requiredTimeDto.Id,
+                ClassId = requiredTimeDto.ClassId,
+                DayOfWeek = requiredTimeDto.DayOfWeek,
+                Required = requiredTimeDto.Required
             };
 
             var classEntity = new Class()
             {
                 Id = classDto.Id,
                 Name = classDto.Name,
-                ShouldTimes = new List<ShouldTime> { shouldTime }
+                RequiredTimes = new List<RequiredTime> { requiredTime }
             };
 
             Assert.AreEqual(classEntity, ClassMapper.FromDTO(classDto));
@@ -58,53 +58,53 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = Guid.NewGuid(),
                 Name = "Computer Science 101",
-                ShouldTimes = new List<ShouldTimeDto>()
+                RequiredTimes = new List<RequiredTimeDto>()
             };
 
             var classEntity = new Class()
             {
                 Id = classDto.Id,
                 Name = classDto.Name,
-                ShouldTimes = new List<ShouldTime>()
+                RequiredTimes = new List<RequiredTime>()
             };
 
             var result = ClassMapper.FromDTO(classDto);
             Assert.AreEqual(classEntity.Id, result.Id);
             Assert.AreEqual(classEntity.Name, result.Name);
-            Assert.AreEqual(0, result.ShouldTimes.Count);
+            Assert.AreEqual(0, result.RequiredTimes.Count);
         }
 
         [TestMethod()]
-        public void FromDTOValidWithMultipleShouldTimes()
+        public void FromDTOValidWithMultipleRequiredTimes()
         {
             var classId = Guid.NewGuid();
-            var shouldTimeDto1 = new ShouldTimeDto()
+            var requiredTimeDto1 = new RequiredTimeDto()
             {
                 Id = Guid.NewGuid(),
                 ClassId = classId,
                 DayOfWeek = DayOfWeek.Monday,
-                Should = TimeSpan.FromHours(8)
+                Required = TimeSpan.FromHours(8)
             };
 
-            var shouldTimeDto2 = new ShouldTimeDto()
+            var requiredTimeDto2 = new RequiredTimeDto()
             {
                 Id = Guid.NewGuid(),
                 ClassId = classId,
                 DayOfWeek = DayOfWeek.Tuesday,
-                Should = TimeSpan.FromHours(6)
+                Required = TimeSpan.FromHours(6)
             };
 
             var classDto = new ClassDto()
             {
                 Id = classId,
                 Name = "Computer Science 101",
-                ShouldTimes = new List<ShouldTimeDto> { shouldTimeDto1, shouldTimeDto2 }
+                RequiredTimes = new List<RequiredTimeDto> { requiredTimeDto1, requiredTimeDto2 }
             };
 
             var result = ClassMapper.FromDTO(classDto);
             Assert.AreEqual(classDto.Id, result.Id);
             Assert.AreEqual(classDto.Name, result.Name);
-            Assert.AreEqual(2, result.ShouldTimes.Count);
+            Assert.AreEqual(2, result.RequiredTimes.Count);
         }
 
         [TestMethod()]
@@ -114,14 +114,14 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = Guid.NewGuid(),
                 Name = "Computer Science 101",
-                ShouldTimes = new List<ShouldTimeDto>()
+                RequiredTimes = new List<RequiredTimeDto>()
             };
 
             var classEntity = new Class()
             {
                 Id = Guid.NewGuid(),
                 Name = "Mathematics 201",
-                ShouldTimes = new List<ShouldTime>()
+                RequiredTimes = new List<RequiredTime>()
             };
 
             Assert.AreNotEqual(classEntity, ClassMapper.FromDTO(classDto));
@@ -141,12 +141,12 @@ namespace Zeiterfassungssoftware.Mapper.Tests
         public void ToDTOValid()
         {
             var classId = Guid.NewGuid();
-            var shouldTime = new ShouldTime()
+            var requiredTime = new RequiredTime()
             {
                 Id = Guid.NewGuid(),
                 ClassId = classId,
                 DayOfWeek = DayOfWeek.Monday,
-                Should = TimeSpan.FromHours(8),
+                Required = TimeSpan.FromHours(8),
                 ValidUntil = DateTime.Today.AddYears(1)
             };
 
@@ -154,22 +154,22 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = classId,
                 Name = "Computer Science 101",
-                ShouldTimes = new List<ShouldTime> { shouldTime }
+                RequiredTimes = new List<RequiredTime> { requiredTime }
             };
 
-            var shouldTimeDto = new ShouldTimeDto()
+            var requiredTimeDto = new RequiredTimeDto()
             {
-                Id = shouldTime.Id,
-                ClassId = shouldTime.ClassId,
-                DayOfWeek = shouldTime.DayOfWeek,
-                Should = shouldTime.Should
+                Id = requiredTime.Id,
+                ClassId = requiredTime.ClassId,
+                DayOfWeek = requiredTime.DayOfWeek,
+                Required = requiredTime.Required
             };
 
             var classDto = new ClassDto()
             {
                 Id = classEntity.Id,
                 Name = classEntity.Name,
-                ShouldTimes = new List<ShouldTimeDto> { shouldTimeDto }
+                RequiredTimes = new List<RequiredTimeDto> { requiredTimeDto }
             };
 
             Assert.AreEqual(classDto, ClassMapper.ToDTO(classEntity));
@@ -182,41 +182,41 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = Guid.NewGuid(),
                 Name = "Computer Science 101",
-                ShouldTimes = new List<ShouldTime>()
+                RequiredTimes = new List<RequiredTime>()
             };
 
             var classDto = new ClassDto()
             {
                 Id = classEntity.Id,
                 Name = classEntity.Name,
-                ShouldTimes = new List<ShouldTimeDto>()
+                RequiredTimes = new List<RequiredTimeDto>()
             };
 
             var result = ClassMapper.ToDTO(classEntity);
             Assert.AreEqual(classDto.Id, result.Id);
             Assert.AreEqual(classDto.Name, result.Name);
-            Assert.AreEqual(0, result.ShouldTimes.Count);
+            Assert.AreEqual(0, result.RequiredTimes.Count);
         }
 
         [TestMethod()]
-        public void ToDTOValidWithMultipleShouldTimes()
+        public void ToDTOValidWithMultipleRequiredTimes()
         {
             var classId = Guid.NewGuid();
-            var shouldTime1 = new ShouldTime()
+            var requiredTime1 = new RequiredTime()
             {
                 Id = Guid.NewGuid(),
                 ClassId = classId,
                 DayOfWeek = DayOfWeek.Monday,
-                Should = TimeSpan.FromHours(8),
+                Required = TimeSpan.FromHours(8),
                 ValidUntil = DateTime.Today.AddYears(1)
             };
 
-            var shouldTime2 = new ShouldTime()
+            var requiredTime2 = new RequiredTime()
             {
                 Id = Guid.NewGuid(),
                 ClassId = classId,
                 DayOfWeek = DayOfWeek.Tuesday,
-                Should = TimeSpan.FromHours(6),
+                Required = TimeSpan.FromHours(6),
                 ValidUntil = DateTime.Today.AddYears(1)
             };
 
@@ -224,13 +224,13 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = classId,
                 Name = "Computer Science 101",
-                ShouldTimes = new List<ShouldTime> { shouldTime1, shouldTime2 }
+                RequiredTimes = new List<RequiredTime> { requiredTime1, requiredTime2 }
             };
 
             var result = ClassMapper.ToDTO(classEntity);
             Assert.AreEqual(classEntity.Id, result.Id);
             Assert.AreEqual(classEntity.Name, result.Name);
-            Assert.AreEqual(2, result.ShouldTimes.Count);
+            Assert.AreEqual(2, result.RequiredTimes.Count);
         }
 
         [TestMethod()]
@@ -240,14 +240,14 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = Guid.NewGuid(),
                 Name = "Computer Science 101",
-                ShouldTimes = new List<ShouldTime>()
+                RequiredTimes = new List<RequiredTime>()
             };
 
             var classDto = new ClassDto()
             {
                 Id = Guid.NewGuid(),
                 Name = "Mathematics 201",
-                ShouldTimes = new List<ShouldTimeDto>()
+                RequiredTimes = new List<RequiredTimeDto>()
             };
 
             Assert.AreNotEqual(classDto, ClassMapper.ToDTO(classEntity));
@@ -270,7 +270,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = Guid.NewGuid(),
                 Name = "Computer Science 101",
-                ShouldTimes = new List<ShouldTimeDto>()
+                RequiredTimes = new List<RequiredTimeDto>()
             };
 
             Assert.IsTrue(ClassMapper.ValidateDTO(classDto));
@@ -283,7 +283,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = Guid.NewGuid(),
                 Name = string.Empty,
-                ShouldTimes = new List<ShouldTimeDto>()
+                RequiredTimes = new List<RequiredTimeDto>()
             };
 
             Assert.IsFalse(ClassMapper.ValidateDTO(classDto));
@@ -296,7 +296,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = Guid.NewGuid(),
                 Name = null,
-                ShouldTimes = new List<ShouldTimeDto>()
+                RequiredTimes = new List<RequiredTimeDto>()
             };
 
             Assert.IsFalse(ClassMapper.ValidateDTO(classDto));
@@ -309,7 +309,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = Guid.NewGuid(),
                 Name = "   ",
-                ShouldTimes = new List<ShouldTimeDto>()
+                RequiredTimes = new List<RequiredTimeDto>()
             };
 
             Assert.IsFalse(ClassMapper.ValidateDTO(classDto));

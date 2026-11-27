@@ -7,7 +7,7 @@ using System.Security.Claims;
 using Zeiterfassungssoftware.Data;
 using Zeiterfassungssoftware.Mapper;
 using Zeiterfassungssoftware.SharedData.Roles;
-using Zeiterfassungssoftware.SharedData.ShouldTimes;
+using Zeiterfassungssoftware.SharedData.RequiredTimes;
 using Zeiterfassungssoftware.SharedData.Times;
 
 namespace Zeiterfassungssoftware.Controller
@@ -25,7 +25,7 @@ namespace Zeiterfassungssoftware.Controller
         }
 
         /// <summary>
-        /// Gets a list of all the shouldtimes.
+        /// Gets a list of all the RequiredTimes.
         /// </summary>
         [HttpGet]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(List<RoleDto>))]
@@ -38,7 +38,7 @@ namespace Zeiterfassungssoftware.Controller
         }
 
         /// <summary>
-        /// Gets a specific shouldtime.
+        /// Gets a specific RequiredTime.
         /// </summary>
         [HttpGet("{Id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(RoleDto))]
@@ -54,7 +54,7 @@ namespace Zeiterfassungssoftware.Controller
         }
 
         /// <summary>
-        /// Creates a new shouldtime
+        /// Creates a new RequiredTime
         /// </summary>
         [HttpPost]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
@@ -77,7 +77,7 @@ namespace Zeiterfassungssoftware.Controller
         }
 
         /// <summary>
-        /// Creates a new shouldtime
+        /// Creates a new RequiredTime
         /// </summary>
         [HttpPut("{id}")]
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(TimeEntryDto))]
@@ -104,7 +104,7 @@ namespace Zeiterfassungssoftware.Controller
         }
 
         /// <summary>
-        /// Deletes a specific shouldtime.
+        /// Deletes a specific RequiredTime.
         /// </summary>
         [HttpDelete("{id}")]
         [ProducesResponseType(StatusCodes.Status204NoContent)]

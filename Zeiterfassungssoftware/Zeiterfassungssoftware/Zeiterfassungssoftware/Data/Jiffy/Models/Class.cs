@@ -4,7 +4,7 @@ public partial class Class
 {
     public Guid Id { get; set; }
     public string Name { get; set; } = null!;
-    public virtual ICollection<ShouldTime> ShouldTimes { get; set; } = new List<ShouldTime>();
+    public virtual ICollection<RequiredTime> RequiredTimes { get; set; } = new List<RequiredTime>();
 
     public override bool Equals(object? obj)
     {

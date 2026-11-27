@@ -24,7 +24,7 @@ namespace Zeiterfassungssoftware.Controller.Tests
         private Mock<UserManager<ApplicationUser>> _userManagerMock;
         private List<Entry> _entries;
         private List<ApplicationUser> _users;
-        private List<ShouldTime> _shouldTimes;
+        private List<RequiredTime> _requiredTimes;
 
         [TestInitialize]
         public void Initialize()
@@ -66,9 +66,9 @@ namespace Zeiterfassungssoftware.Controller.Tests
                 }
             };
 
-            _shouldTimes = new List<ShouldTime>
+            _requiredTimes = new List<RequiredTime>
             {
-                new ShouldTime
+                new RequiredTime
                 {
                     Id = Guid.Parse("4107b8b9-36d2-4c68-9171-bc6f7cba478d"),
                     DayOfWeek = DayOfWeek.Monday,
@@ -87,7 +87,7 @@ namespace Zeiterfassungssoftware.Controller.Tests
                     End = DateTime.Now.AddHours(-1),
                     Title = "Admin Entry",
                     Description = "Admin work",
-                    ShouldTimeId = _shouldTimes[0].Id
+                    RequiredTimeId = _requiredTimes[0].Id
                 },
                 new Entry
                 {
@@ -97,7 +97,7 @@ namespace Zeiterfassungssoftware.Controller.Tests
                     End = DateTime.Now.AddHours(-2),
                     Title = "User Entry",
                     Description = "User work",
-                    ShouldTimeId = _shouldTimes[0].Id
+                    RequiredTimeId = _requiredTimes[0].Id
                 }
             };
 
@@ -109,7 +109,7 @@ namespace Zeiterfassungssoftware.Controller.Tests
                 });
 
             _context.Users.AddRange(_users);
-            _context.ShouldTimes.AddRange(_shouldTimes);
+            _context.RequiredTimes.AddRange(_requiredTimes);
             _context.Entries.AddRange(_entries);
             _context.SaveChanges();
 
