@@ -24,7 +24,7 @@ namespace Zeiterfassungssoftware.Controller.Tests
         private Mock<UserManager<ApplicationUser>> _userManagerMock;
         private List<Entry> _entries;
         private List<ApplicationUser> _users;
-        private List<RequiredTime> _RequiredTimes;
+        private List<RequiredTime> _requiredTimes;
 
         [TestInitialize]
         public void Initialize()
@@ -66,7 +66,7 @@ namespace Zeiterfassungssoftware.Controller.Tests
                 }
             };
 
-            _RequiredTimes = new List<RequiredTime>
+            _requiredTimes = new List<RequiredTime>
             {
                 new RequiredTime
                 {
@@ -87,7 +87,7 @@ namespace Zeiterfassungssoftware.Controller.Tests
                     End = DateTime.Now.AddHours(-1),
                     Title = "Admin Entry",
                     Description = "Admin work",
-                    RequiredTimeId = _RequiredTimes[0].Id
+                    RequiredTimeId = _requiredTimes[0].Id
                 },
                 new Entry
                 {
@@ -97,7 +97,7 @@ namespace Zeiterfassungssoftware.Controller.Tests
                     End = DateTime.Now.AddHours(-2),
                     Title = "User Entry",
                     Description = "User work",
-                    RequiredTimeId = _RequiredTimes[0].Id
+                    RequiredTimeId = _requiredTimes[0].Id
                 }
             };
 
@@ -109,7 +109,7 @@ namespace Zeiterfassungssoftware.Controller.Tests
                 });
 
             _context.Users.AddRange(_users);
-            _context.RequiredTimes.AddRange(_RequiredTimes);
+            _context.RequiredTimes.AddRange(_requiredTimes);
             _context.Entries.AddRange(_entries);
             _context.SaveChanges();
 

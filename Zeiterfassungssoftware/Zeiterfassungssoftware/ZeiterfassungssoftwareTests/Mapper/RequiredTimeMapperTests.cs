@@ -39,7 +39,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Id = Id,
                 ClassId = ClassId,
                 DayOfWeek = DayOfWeek.Wednesday,
-                Should = new TimeSpan(2, 0, 0),
+                Required = new TimeSpan(2, 0, 0),
                 ValidUntil = DateTime.Now
             };
 
@@ -48,7 +48,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Id = Id,
                 ClassId = ClassId,
                 DayOfWeek = DayOfWeek.Wednesday,
-                Should = new TimeSpan(2, 0, 0)
+                Required = new TimeSpan(2, 0, 0)
             };
 
             Assert.AreEqual(RequiredTimeDto, RequiredTimeMapper.ToDTO(RequiredTime));
@@ -65,7 +65,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Id = Id,
                 ClassId = ClassId,
                 DayOfWeek = DayOfWeek.Wednesday,
-                Should = new TimeSpan(2, 0, 0),
+                Required = new TimeSpan(2, 0, 0),
                 ValidUntil = DateTime.Now
             };
 
@@ -74,7 +74,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Id = Id,
                 ClassId = ClassId,
                 DayOfWeek = DayOfWeek.Wednesday,
-                Should = new TimeSpan(2, 0, 0)
+                Required = new TimeSpan(2, 0, 0)
             };
 
             Assert.AreEqual(RequiredTime, RequiredTimeMapper.FromDTO(RequiredTimeDto));
@@ -88,7 +88,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Id = Guid.NewGuid(),
                 ClassId = Guid.NewGuid(),
                 DayOfWeek = DayOfWeek.Wednesday,
-                Should = new TimeSpan(2, 0, 0),
+                Required = new TimeSpan(2, 0, 0),
                 ValidUntil = DateTime.Now
             };
 
@@ -97,7 +97,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Id = Guid.NewGuid(),
                 ClassId = Guid.NewGuid(),
                 DayOfWeek = DayOfWeek.Wednesday,
-                Should = new TimeSpan(2, 0, 0)
+                Required = new TimeSpan(2, 0, 0)
             };
 
             Assert.AreNotEqual(RequiredTime, RequiredTimeMapper.FromDTO(RequiredTimeDto));
@@ -111,7 +111,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Id = Guid.NewGuid(),
                 ClassId = Guid.NewGuid(),
                 DayOfWeek = DayOfWeek.Wednesday,
-                Should = new TimeSpan(2, 0, 0),
+                Required = new TimeSpan(2, 0, 0),
                 ValidUntil = DateTime.Now
             };
 
@@ -120,7 +120,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
                 Id = Guid.NewGuid(),
                 ClassId = Guid.NewGuid(),
                 DayOfWeek = DayOfWeek.Wednesday,
-                Should = new TimeSpan(2, 0, 0)
+                Required = new TimeSpan(2, 0, 0)
             };
 
             Assert.AreNotEqual(RequiredTimeDto, RequiredTimeMapper.ToDTO(RequiredTime));

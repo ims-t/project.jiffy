@@ -5,40 +5,40 @@ namespace Zeiterfassungssoftware.Mapper
 {
     public class RequiredTimeMapper
     {
-        public static RequiredTime FromDTO(RequiredTimeDto RequiredTimeDto)
+        public static RequiredTime FromDTO(RequiredTimeDto requiredTimeDto)
         {
-            if (RequiredTimeDto is null)
+            if (requiredTimeDto is null)
                 throw new ArgumentNullException();
 
             return new()
             {
-                Id = RequiredTimeDto.Id,
-                ClassId = RequiredTimeDto.ClassId,
-                Should = RequiredTimeDto.Should,
-                DayOfWeek = RequiredTimeDto.DayOfWeek,
+                Id = requiredTimeDto.Id,
+                ClassId = requiredTimeDto.ClassId,
+                Required = requiredTimeDto.Required,
+                DayOfWeek = requiredTimeDto.DayOfWeek,
             };
         }
 
-        public static RequiredTimeDto ToDTO(RequiredTime RequiredTime)
+        public static RequiredTimeDto ToDTO(RequiredTime requiredTime)
         {
-            if (RequiredTime is null)
+            if (requiredTime is null)
                 throw new ArgumentNullException();
 
             return new()
             {
-                Id = RequiredTime.Id,
-                ClassId = RequiredTime.ClassId,
-                Should = RequiredTime.Should,
-                DayOfWeek = RequiredTime.DayOfWeek,
+                Id = requiredTime.Id,
+                ClassId = requiredTime.ClassId,
+                Required = requiredTime.Required,
+                DayOfWeek = requiredTime.DayOfWeek,
             };
         }
 
-        public static bool ValidateDto(RequiredTimeDto RequiredTimeDto)
+        public static bool ValidateDto(RequiredTimeDto requiredTimeDto)
         {
-            if (RequiredTimeDto is null)
+            if (requiredTimeDto is null)
                 return false;
 
-            if(RequiredTimeDto.Should <= TimeSpan.FromSeconds(0))
+            if(requiredTimeDto.Required <= TimeSpan.FromSeconds(0))
                 return false;
 
             return true;

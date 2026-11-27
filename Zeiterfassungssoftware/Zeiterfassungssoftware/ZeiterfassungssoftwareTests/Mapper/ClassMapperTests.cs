@@ -18,34 +18,34 @@ namespace Zeiterfassungssoftware.Mapper.Tests
         [TestMethod()]
         public void FromDTOValid()
         {
-            var RequiredTimeDto = new RequiredTimeDto()
+            var requiredTimeDto = new RequiredTimeDto()
             {
                 Id = Guid.NewGuid(),
                 ClassId = Guid.NewGuid(),
                 DayOfWeek = DayOfWeek.Monday,
-                Should = TimeSpan.FromHours(8)
+                Required = TimeSpan.FromHours(8)
             };
 
             var classDto = new ClassDto()
             {
                 Id = Guid.NewGuid(),
                 Name = "Computer Science 101",
-                RequiredTimes = new List<RequiredTimeDto> { RequiredTimeDto }
+                RequiredTimes = new List<RequiredTimeDto> { requiredTimeDto }
             };
 
-            var RequiredTime = new RequiredTime()
+            var requiredTime = new RequiredTime()
             {
-                Id = RequiredTimeDto.Id,
-                ClassId = RequiredTimeDto.ClassId,
-                DayOfWeek = RequiredTimeDto.DayOfWeek,
-                Should = RequiredTimeDto.Should
+                Id = requiredTimeDto.Id,
+                ClassId = requiredTimeDto.ClassId,
+                DayOfWeek = requiredTimeDto.DayOfWeek,
+                Required = requiredTimeDto.Required
             };
 
             var classEntity = new Class()
             {
                 Id = classDto.Id,
                 Name = classDto.Name,
-                RequiredTimes = new List<RequiredTime> { RequiredTime }
+                RequiredTimes = new List<RequiredTime> { requiredTime }
             };
 
             Assert.AreEqual(classEntity, ClassMapper.FromDTO(classDto));
@@ -78,27 +78,27 @@ namespace Zeiterfassungssoftware.Mapper.Tests
         public void FromDTOValidWithMultipleRequiredTimes()
         {
             var classId = Guid.NewGuid();
-            var RequiredTimeDto1 = new RequiredTimeDto()
+            var requiredTimeDto1 = new RequiredTimeDto()
             {
                 Id = Guid.NewGuid(),
                 ClassId = classId,
                 DayOfWeek = DayOfWeek.Monday,
-                Should = TimeSpan.FromHours(8)
+                Required = TimeSpan.FromHours(8)
             };
 
-            var RequiredTimeDto2 = new RequiredTimeDto()
+            var requiredTimeDto2 = new RequiredTimeDto()
             {
                 Id = Guid.NewGuid(),
                 ClassId = classId,
                 DayOfWeek = DayOfWeek.Tuesday,
-                Should = TimeSpan.FromHours(6)
+                Required = TimeSpan.FromHours(6)
             };
 
             var classDto = new ClassDto()
             {
                 Id = classId,
                 Name = "Computer Science 101",
-                RequiredTimes = new List<RequiredTimeDto> { RequiredTimeDto1, RequiredTimeDto2 }
+                RequiredTimes = new List<RequiredTimeDto> { requiredTimeDto1, requiredTimeDto2 }
             };
 
             var result = ClassMapper.FromDTO(classDto);
@@ -141,12 +141,12 @@ namespace Zeiterfassungssoftware.Mapper.Tests
         public void ToDTOValid()
         {
             var classId = Guid.NewGuid();
-            var RequiredTime = new RequiredTime()
+            var requiredTime = new RequiredTime()
             {
                 Id = Guid.NewGuid(),
                 ClassId = classId,
                 DayOfWeek = DayOfWeek.Monday,
-                Should = TimeSpan.FromHours(8),
+                Required = TimeSpan.FromHours(8),
                 ValidUntil = DateTime.Today.AddYears(1)
             };
 
@@ -154,22 +154,22 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = classId,
                 Name = "Computer Science 101",
-                RequiredTimes = new List<RequiredTime> { RequiredTime }
+                RequiredTimes = new List<RequiredTime> { requiredTime }
             };
 
-            var RequiredTimeDto = new RequiredTimeDto()
+            var requiredTimeDto = new RequiredTimeDto()
             {
-                Id = RequiredTime.Id,
-                ClassId = RequiredTime.ClassId,
-                DayOfWeek = RequiredTime.DayOfWeek,
-                Should = RequiredTime.Should
+                Id = requiredTime.Id,
+                ClassId = requiredTime.ClassId,
+                DayOfWeek = requiredTime.DayOfWeek,
+                Required = requiredTime.Required
             };
 
             var classDto = new ClassDto()
             {
                 Id = classEntity.Id,
                 Name = classEntity.Name,
-                RequiredTimes = new List<RequiredTimeDto> { RequiredTimeDto }
+                RequiredTimes = new List<RequiredTimeDto> { requiredTimeDto }
             };
 
             Assert.AreEqual(classDto, ClassMapper.ToDTO(classEntity));
@@ -202,21 +202,21 @@ namespace Zeiterfassungssoftware.Mapper.Tests
         public void ToDTOValidWithMultipleRequiredTimes()
         {
             var classId = Guid.NewGuid();
-            var RequiredTime1 = new RequiredTime()
+            var requiredTime1 = new RequiredTime()
             {
                 Id = Guid.NewGuid(),
                 ClassId = classId,
                 DayOfWeek = DayOfWeek.Monday,
-                Should = TimeSpan.FromHours(8),
+                Required = TimeSpan.FromHours(8),
                 ValidUntil = DateTime.Today.AddYears(1)
             };
 
-            var RequiredTime2 = new RequiredTime()
+            var requiredTime2 = new RequiredTime()
             {
                 Id = Guid.NewGuid(),
                 ClassId = classId,
                 DayOfWeek = DayOfWeek.Tuesday,
-                Should = TimeSpan.FromHours(6),
+                Required = TimeSpan.FromHours(6),
                 ValidUntil = DateTime.Today.AddYears(1)
             };
 
@@ -224,7 +224,7 @@ namespace Zeiterfassungssoftware.Mapper.Tests
             {
                 Id = classId,
                 Name = "Computer Science 101",
-                RequiredTimes = new List<RequiredTime> { RequiredTime1, RequiredTime2 }
+                RequiredTimes = new List<RequiredTime> { requiredTime1, requiredTime2 }
             };
 
             var result = ClassMapper.ToDTO(classEntity);

@@ -7,7 +7,7 @@ namespace Zeiterfassungssoftware.SharedData.RequiredTimes
         public Guid Id { get; set; }
         public Guid ClassId { get; set; }
         public DayOfWeek DayOfWeek { get; set; }
-        public TimeSpan Should { get; set; }
+        public TimeSpan Required { get; set; }
 
         public override bool Equals(object? obj)
         {

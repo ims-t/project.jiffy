@@ -43,9 +43,9 @@ namespace Zeiterfassungssoftware.Controller.Tests
 
             var okResult = result.Result as OkObjectResult;
             Assert.IsNotNull(okResult);
-            var RequiredTimes = okResult.Value as List<RequiredTimeDto>;
-            Assert.IsNotNull(RequiredTimes);
-            Assert.AreEqual(0, RequiredTimes.Count);
+            var requiredTimes = okResult.Value as List<RequiredTimeDto>;
+            Assert.IsNotNull(requiredTimes);
+            Assert.AreEqual(0, requiredTimes.Count);
         }
 
         [TestMethod]
@@ -70,57 +70,57 @@ namespace Zeiterfassungssoftware.Controller.Tests
 
             var okResult = result.Result as OkObjectResult;
             Assert.IsNotNull(okResult);
-            var RequiredTimes = okResult.Value as List<RequiredTimeDto>;
-            Assert.IsNotNull(RequiredTimes);
-            Assert.AreEqual(1, RequiredTimes.Count);
+            var requiredTimes = okResult.Value as List<RequiredTimeDto>;
+            Assert.IsNotNull(requiredTimes);
+            Assert.AreEqual(1, requiredTimes.Count);
         }
 
         [TestMethod]
         public async Task GetRequiredTimes_ReturnsAllValidRequiredTimes()
         {
-            var RequiredTime1 = new RequiredTime
+            var requiredTime1 = new RequiredTime
             {
                 Id = Guid.NewGuid(),
                 DayOfWeek = DayOfWeek.Monday,
                 ValidUntil = DateTime.Now.AddDays(30)
             };
-            var RequiredTime2 = new RequiredTime
+            var requiredTime2 = new RequiredTime
             {
                 Id = Guid.NewGuid(),
                 DayOfWeek = DayOfWeek.Tuesday,
                 ValidUntil = DateTime.Now.AddDays(30)
             };
-            _context.RequiredTimes.AddRange(RequiredTime1, RequiredTime2);
+            _context.RequiredTimes.AddRange(requiredTime1, requiredTime2);
             await _context.SaveChangesAsync();
 
             var result = await _controller.GetRequiredTimes();
 
             var okResult = result.Result as OkObjectResult;
             Assert.IsNotNull(okResult);
-            var RequiredTimes = okResult.Value as List<RequiredTimeDto>;
-            Assert.IsNotNull(RequiredTimes);
-            Assert.AreEqual(2, RequiredTimes.Count);
+            var requiredTimes = okResult.Value as List<RequiredTimeDto>;
+            Assert.IsNotNull(requiredTimes);
+            Assert.AreEqual(2, requiredTimes.Count);
         }
 
         [TestMethod]
         public async Task GetRequiredTimeById_ReturnsRequiredTime_WhenValidRequiredTimeExists()
         {
             var id = Guid.NewGuid();
-            var RequiredTime = new RequiredTime
+            var requiredTime = new RequiredTime
             {
                 Id = id,
                 DayOfWeek = DayOfWeek.Monday,
                 ValidUntil = DateTime.Now.AddDays(30)
             };
-            _context.RequiredTimes.Add(RequiredTime);
+            _context.RequiredTimes.Add(requiredTime);
             await _context.SaveChangesAsync();
 
             var result = await _controller.GetRequiredTimeById(id);
 
             var okResult = result.Result as OkObjectResult;
             Assert.IsNotNull(okResult);
-            var RequiredTimeDto = okResult.Value as RequiredTimeDto;
-            Assert.IsNotNull(RequiredTimeDto);
+            var requiredTimeDto = okResult.Value as RequiredTimeDto;
+            Assert.IsNotNull(requiredTimeDto);
         }
 
         [TestMethod]
@@ -135,13 +135,13 @@ namespace Zeiterfassungssoftware.Controller.Tests
         public async Task GetRequiredTimeById_ReturnsNotFound_WhenRequiredTimeIsExpired()
         {
             var id = Guid.NewGuid();
-            var RequiredTime = new RequiredTime
+            var requiredTime = new RequiredTime
             {
                 Id = id,
                 DayOfWeek = DayOfWeek.Monday,
                 ValidUntil = DateTime.Now.AddDays(-30)
             };
-            _context.RequiredTimes.Add(RequiredTime);
+            _context.RequiredTimes.Add(requiredTime);
             await _context.SaveChangesAsync();
 
             var result = await _controller.GetRequiredTimeById(id);
@@ -164,13 +164,13 @@ namespace Zeiterfassungssoftware.Controller.Tests
         public async Task DeleteRequiredTime_InvalidatesRequiredTime_WhenRequiredTimeExists()
         {
             var id = Guid.NewGuid();
-            var RequiredTime = new RequiredTime
+            var requiredTime = new RequiredTime
             {
                 Id = id,
                 DayOfWeek = DayOfWeek.Monday,
                 ValidUntil = DateTime.Now.AddDays(30)
             };
-            _context.RequiredTimes.Add(RequiredTime);
+            _context.RequiredTimes.Add(requiredTime);
             await _context.SaveChangesAsync();
 
             var result = await _controller.DeleteRequiredTime(id);
@@ -186,19 +186,19 @@ namespace Zeiterfassungssoftware.Controller.Tests
         public async Task DeleteRequiredTime_DoesNotPhysicallyDeleteRecord()
         {
             var id = Guid.NewGuid();
-            var RequiredTime = new RequiredTime
+            var requiredTime = new RequiredTime
             {
                 Id = id,
                 DayOfWeek = DayOfWeek.Monday,
                 ValidUntil = DateTime.Now.AddDays(30)
             };
-            _context.RequiredTimes.Add(RequiredTime);
+            _context.RequiredTimes.Add(requiredTime);
             await _context.SaveChangesAsync();
 
             await _controller.DeleteRequiredTime(id);
 
-            var RequiredTimeStillExists = await _context.RequiredTimes.FindAsync(id);
-            Assert.IsNotNull(RequiredTimeStillExists);
+            var requiredTimeStillExists = await _context.RequiredTimes.FindAsync(id);
+            Assert.IsNotNull(requiredTimeStillExists);
         }
     }
 }

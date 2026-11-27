@@ -9,7 +9,7 @@ namespace Zeiterfassungssoftware.Client.Services
     public class RemoteRequiredTimeProvider : IRequiredTimeProvider
     {
         public bool IsLoaded { get; set; }
-        public List<RequiredTimeDto> _RequiredTimes { get; set; }
+        public List<RequiredTimeDto> _requiredTimes { get; set; }
 
         public static readonly JsonSerializerOptions Options = new JsonSerializerOptions()
         {
@@ -17,7 +17,7 @@ namespace Zeiterfassungssoftware.Client.Services
         };
         public HttpClient HttpClient { get; set; } = new HttpClient()
         {
-            BaseAddress = new Uri("https://localhost:7099/api/v1/RequiredTimes/")
+            BaseAddress = new Uri("https://localhost:7099/api/v1/requiredtimes/")
         };
 
 
@@ -27,13 +27,13 @@ namespace Zeiterfassungssoftware.Client.Services
 
         public async void LoadRequiredTimes()
         {
-            _RequiredTimes = await HttpClient.GetFromJsonAsync<List<RequiredTimeDto>>("") ?? new();
+            _requiredTimes = await HttpClient.GetFromJsonAsync<List<RequiredTimeDto>>("") ?? new();
             IsLoaded = true;
         }
 
-        public async Task<RequiredTimeDto> CreateRequiredTime(RequiredTimeDto RequiredTime)
+        public async Task<RequiredTimeDto> CreateRequiredTime(RequiredTimeDto requiredTime)
         {
-            var Response = await HttpClient.PostAsJsonAsync("", RequiredTime);
+            var Response = await HttpClient.PostAsJsonAsync("", requiredTime);
 
             try
             {
@@ -41,7 +41,7 @@ namespace Zeiterfassungssoftware.Client.Services
                 var ReponseContent = await Response.Content.ReadAsStringAsync();
                 var ConfirmedRequiredTime = JsonSerializer.Deserialize<RequiredTimeDto>(ReponseContent, Options) ?? new();
                 
-                _RequiredTimes.Add(ConfirmedRequiredTime);
+                _requiredTimes.Add(ConfirmedRequiredTime);
                 return ConfirmedRequiredTime;
             }
             catch (Exception e)
@@ -50,9 +50,9 @@ namespace Zeiterfassungssoftware.Client.Services
             }
         }
 
-        public async Task<RequiredTimeDto> UpdateRequiredTime(Guid id, RequiredTimeDto souldTime)
+        public async Task<RequiredTimeDto> UpdateRequiredTime(Guid id, RequiredTimeDto requiredTime)
         {
-            var Response = await HttpClient.PutAsJsonAsync(id.ToString(), souldTime);
+            var Response = await HttpClient.PutAsJsonAsync(id.ToString(), requiredTime);
 
             try
             {
@@ -65,15 +65,15 @@ namespace Zeiterfassungssoftware.Client.Services
                     throw new Exception();
 
 
-                var RequiredTime = _RequiredTimes.FirstOrDefault(e => e.Id == id);
+                var RequiredTime = _requiredTimes.FirstOrDefault(e => e.Id == id);
                 if (RequiredTime is null)
                 {
-                    _RequiredTimes.Add(ConfirmedRequiredTime);
+                    _requiredTimes.Add(ConfirmedRequiredTime);
                 }
                 else
                 {
-                    var index = _RequiredTimes.IndexOf(RequiredTime);
-                    _RequiredTimes[index] = ConfirmedRequiredTime;
+                    var index = _requiredTimes.IndexOf(RequiredTime);
+                    _requiredTimes[index] = ConfirmedRequiredTime;
                 }
 
                 return ConfirmedRequiredTime;
@@ -94,10 +94,10 @@ namespace Zeiterfassungssoftware.Client.Services
             try
             {
                 Response.EnsureSuccessStatusCode();
-                var RequiredTime = _RequiredTimes.FirstOrDefault(e => e.Id == id);
+                var RequiredTime = _requiredTimes.FirstOrDefault(e => e.Id == id);
 
                 if (RequiredTime is not null)
-                    _RequiredTimes.Remove(RequiredTime);
+                    _requiredTimes.Remove(RequiredTime);
             }
             catch (Exception e)
             {
@@ -117,7 +117,7 @@ namespace Zeiterfassungssoftware.Client.Services
 
         public List<RequiredTimeDto> GetRequiredTimes()
         {
-            return _RequiredTimes;
+            return _requiredTimes;
         }
     }
 }

@@ -28,20 +28,20 @@
                             <p class="edit-category-title">Class name</p>
                             <TextField Class="textfield class-name-input" Multiline="false" PlaceHolder="Class name" @bind-Value="SelectedClass.Name" />
                             <br />
-                            <p class="edit-category-title">Should times</p>
-                            <div class="RequiredTimes-body">
+                            <p class="edit-category-title">Required times</p>
+                            <div class="requiredTimes-body">
                                 @foreach(var RequiredTime in SelectedClass.RequiredTimes)
                                 {
-                                    <div class="RequiredTime">
-                                        <button class="remove-RequiredTime" @onclick="() => SelectedClass.RequiredTimes.Remove(RequiredTime)" >X</button>
-                                        <div class="RequiredTime-info">
-                                            <select class="RequiredTime-dayofweek-select" @bind="RequiredTime.DayOfWeek">
+                                    <div class="requiredTime">
+                                        <button class="remove-requiredTime" @onclick="() => SelectedClass.RequiredTimes.Remove(RequiredTime)" >X</button>
+                                        <div class="requiredTime-info">
+                                            <select class="requiredTime-dayofweek-select" @bind="RequiredTime.DayOfWeek">
                                                 @foreach (var Weekday in Enum.GetValues(typeof(DayOfWeek)))
                                                 {
                                                     <option>@Weekday</option>
                                                 }
                                             </select>
-                                            <input type="time" value="@RequiredTime.Should.ToString()" @onchange="(e) => RequiredTime.Should = TimeSpan.Parse(e.Value as string ?? string.Empty)" />
+                                            <input type="time" value="@RequiredTime.Required.ToString()" @onchange="(e) => RequiredTime.Required = TimeSpan.Parse(e.Value as string ?? string.Empty)" />
                                         </div>
                                     </div>
                                 }
