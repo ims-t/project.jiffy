@@ -208,6 +208,7 @@ namespace Zeiterfassungssoftware.Services
 
                 Entry.Justification = entryDto.Justification;
                 Entry.EditedAt = DateTime.Now;
+                Entry.EditedBy = User.Identity.Name.Split('@')[0];
             }
 
             Entry.Start = entryDto.Start;
